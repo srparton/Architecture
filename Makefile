@@ -21,6 +21,6 @@ levensthain : Assignment1.o
 levensthain.o :	Assignment1.c 
 	gcc -c Assignment1.c
 clean :
-	rm -rf *.o binarySearch levensthain .*sw* 
+	rm -rf *.o binarySearch levensthain .*sw* a.out
 
 

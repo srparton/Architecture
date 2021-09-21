@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-int printMatrix(int numCol, int numRow, int* matrix){
-  int row, col;
-  for (row=0; row < numRow; row++){
-    for (col=0; col < numCol; col++){
-      printf("%d  ", *(matrix + row*col + col));
-    }
-    printf("\n");
-  }
-}
+// void printMatrix(int numCol, int numRow, int* matrix){
+//   int row, col;
+//   for (row=0; row < numRow; row++){
+//     for (col=0; col < numCol; col++){
+//       printf("%d  ", *(matrix + row*col + col));
+//     }
+//     printf("\n");
+//   }
+// }
 
 int minimum(int a, int b, int c){
   if(a <= b && a <= c)
@@ -38,8 +38,8 @@ int Levensthain(const char *s1,const char *s2){
       matrix[x][y] = minimum(matrix[x-1][y] + 1, matrix[x][y-1] + 1, matrix[x-1][y-1] + (s1[y-1] == s2[x-1] ? 0 : 1));
     }
   }
-  printMatrix(s1len, s2len, matrix);
-  printf("s1 %d, s2 %d", s1len, s2len);
+  // printMatrix(s1len, s2len, *matrix);
+  printf("s1 %d, s2 %d\n", s1len, s2len);
   return(matrix[s2len][s1len]);
 }
 

@@ -1,7 +1,7 @@
 # Makefile for the frst C++ bag
 #
 
-all: binarySearch 
+#all: binarySearch 
 
 run_binarySearch : binarySearch
 	./binarySearch
@@ -18,9 +18,17 @@ run_variables : variables
 run_while : while
 	./while
 
+run_1dArray : 1dArray
+	./1dArray
+
+1dArray : 1dArray.o
+	gcc -o 1dArray 1dArray.o
+
+1dArray.o : 1dArray.c
+	gcc -c 1dArray.c 
+
 binarySearch : binarySearch.o
 	gcc -o binarySearch binarySearch.o
-
 
 binarySearch.o : binarySearch.c
 	gcc -c binarySearch.c
@@ -51,6 +59,6 @@ while.o	:	while.c
 
 
 clean :
-	rm -rf *.o binarySearch doWhile while struct variables .*sw* a.out
+	rm -rf *.o binarySearch doWhile while struct variables 1dArray .*sw* a.out
 
 

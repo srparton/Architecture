@@ -38,7 +38,13 @@ int Levensthain(const char *s1,const char *s2){
       matrix[x][y] = minimum(matrix[x-1][y] + 1, matrix[x][y-1] + 1, matrix[x-1][y-1] + (s1[y-1] == s2[x-1] ? 0 : 1));
     }
   }
-  printMatrix(s1len, s2len, matrix);
+  for (int row=0; row < s1len; row++){
+    for (int col=0; col < s2len; col++){
+      printf("%d  ", matrix[row][col]);
+    }
+    printf("\n");
+  }
+  // printMatrix(s1len+1, s2len+1, matrix);
   printf("s1 %d, s2 %d", s1len, s2len);
   return(matrix[s2len][s1len]);
 }

@@ -21,6 +21,15 @@ run_while : while
 run_1dArray : 1dArray
 	./1dArray
 
+run_pointer : pointer
+	./pointer
+
+pointer : pointer.o
+	gcc -o pointer pointer.o
+
+pointer.o : pointer.c
+	gcc -c pointer.c 
+
 1dArray : 1dArray.o
 	gcc -o 1dArray 1dArray.o
 
@@ -59,6 +68,6 @@ while.o	:	while.c
 
 
 clean :
-	rm -rf *.o binarySearch doWhile while struct variables 1dArray .*sw* a.out
+	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer .*sw* a.out
 
 

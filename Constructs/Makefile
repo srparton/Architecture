@@ -1,7 +1,7 @@
 # Makefile for the frst C++ bag
 #
 
-all: binarySearch 
+#all: binarySearch 
 
 run_binarySearch : binarySearch
 	./binarySearch
@@ -18,9 +18,62 @@ run_variables : variables
 run_while : while
 	./while
 
+run_1dArray : 1dArray
+	./1dArray
+
+run_pointer : pointer
+	./pointer
+
+run_input : input
+	./input
+
+run_smallest : smallest
+	./smallest
+
+run_Assignment1 : Assignment1
+	./Assignment1
+
+run_construct3 : construct3
+	./construct3
+
+construct3 : construct3.o
+	gcc -o construct3 construct3.o
+
+construct3.o : construct3.c
+	gcc -c construct3.c 
+
+Assignment1 : Assignment1.o
+	gcc -o Assignment1 Assignment1.o
+
+Assignment1.o : Assignment1.c
+	gcc -c Assignment1.c 
+
+smallest : smallest.o
+	gcc -o smallest smallest.o
+
+smallest.o : smallest.c
+	gcc -c smallest.c 
+
+input : input.o
+	gcc -o input input.o
+
+input.o : input.c
+	gcc -c input.c 
+
+pointer : pointer.o
+	gcc -o pointer pointer.o
+
+pointer.o : pointer.c
+	gcc -c pointer.c 
+
+1dArray : 1dArray.o
+	gcc -o 1dArray 1dArray.o
+
+1dArray.o : 1dArray.c
+	gcc -c 1dArray.c 
+
 binarySearch : binarySearch.o
 	gcc -o binarySearch binarySearch.o
-
 
 binarySearch.o : binarySearch.c
 	gcc -c binarySearch.c
@@ -51,6 +104,6 @@ while.o	:	while.c
 
 
 clean :
-	rm -rf *.o binarySearch doWhile while struct variables .*sw* a.out
+	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input smallest Assignment1 construct3 .*sw* a.out
 
 

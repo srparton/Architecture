@@ -27,6 +27,18 @@ run_pointer : pointer
 run_input : input
 	./input
 
+run_sort : sort
+	./sort
+
+debug_sort	: sort
+	lldb sort
+
+sort : sort.o
+	gcc -o sort sort.o
+
+sort.o : sort.c
+	gcc -c sort.c 
+
 input : input.o
 	gcc -o input input.o
 
@@ -77,6 +89,6 @@ while.o	:	while.c
 
 
 clean :
-	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input .*sw* a.out
+	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input sort .*sw* a.out
 
 

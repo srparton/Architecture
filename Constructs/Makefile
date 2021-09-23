@@ -101,9 +101,79 @@ while	:	while.o
 
 while.o	:	while.c 
 	gcc -c while.c 
+#-----------------------------Assebmly Creation--------------------------------
+smallestAsm	:	smallest.c
+	gcc -Og -c smallest.c
 
+crtAsmSmallest	:	smallestAsm 
+	objdump -d smallest.o >> ../Assembly/smallest/smallest.txt
 
+1dArrayAsm	:	1dArray.c
+	gcc -Og -c 1dArray.c
+
+crtAsm1dArray	:	1dArrayAsm 
+	objdump -d 1dArray.o >> ../Assembly/1dArray/1dArray.txt
+
+Assignment1Asm	:	Assignment1.c
+	gcc -Og -c Assignment1.c
+
+crtAsmAssignment1	:	Assignment1Asm 
+	objdump -d Assignment1.o >> ../Assembly/Assignment1/Assignment1.txt
+
+binarySearchAsm	:	binarySearch.c
+	gcc -Og -c binarySearch.c
+
+crtAsmbinarySearch	:	binarySearchAsm 
+	objdump -d binarySearch.o >> ../Assembly/binarySearch/binarySearch.txt
+
+construct3Asm	:	construct3.c
+	gcc -Og -c construct3.c
+
+crtAsmconstruct3	:	construct3Asm 
+	objdump -d construct3.o >> ../Assembly/construct3/construct3.txt
+
+doWhileAsm	:	doWhile.c
+	gcc -Og -c doWhile.c
+
+crtAsmdoWhile	:	doWhileAsm 
+	objdump -d doWhile.o >> ../Assembly/doWhile/doWhile.txt
+
+inputAsm	:	input.c
+	gcc -Og -c input.c
+
+crtAsminput	:	inputAsm 
+	objdump -d input.o >> ../Assembly/input/input.txt
+
+pointerAsm	:	pointer.c
+	gcc -Og -c pointer.c
+
+crtAsmpointer	:	pointerAsm 
+	objdump -d pointer.o >> ../Assembly/pointer/pointer.txt
+
+smallestAsm	:	smallest.c
+	gcc -Og -c smallest.c
+
+crtAsmsmallest	:	smallestAsm 
+	objdump -d smallest.o >> ../Assembly/smallest/smallest.txt
+
+structAsm	:	struct.c
+	gcc -Og -c struct.c
+
+crtAsmstruct	:	structAsm 
+	objdump -d struct.o >> ../Assembly/struct/struct.txt
+
+variablesAsm	:	variables.c
+	gcc -Og -c variables.c
+
+crtAsmvariables	:	variablesAsm 
+	objdump -d variables.o >> ../Assembly/variables/variables.txt
+
+whileAsm	:	while.c
+	gcc -Og -c while.c
+
+crtAsmwhile	:	whileAsm 
+	objdump -d while.o >> ../Assembly/while/while.txt
+	
 clean :
 	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input smallest Assignment1 construct3 .*sw* a.out
-
 

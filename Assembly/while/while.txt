@@ -1,0 +1,22 @@
+
+while.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	ba 01 00 00 00       	mov    $0x1,%edx
+   5:	b8 01 00 00 00       	mov    $0x1,%eax
+   a:	eb 06                	jmp    12 <main+0x12>
+   c:	0f af d0             	imul   %eax,%edx
+   f:	83 c0 01             	add    $0x1,%eax
+  12:	83 f8 0a             	cmp    $0xa,%eax
+  15:	7e f5                	jle    c <main+0xc>
+  17:	48 83 ec 08          	sub    $0x8,%rsp
+  1b:	be 00 00 00 00       	mov    $0x0,%esi
+  20:	bf 01 00 00 00       	mov    $0x1,%edi
+  25:	b8 00 00 00 00       	mov    $0x0,%eax
+  2a:	e8 00 00 00 00       	callq  2f <main+0x2f>
+  2f:	b8 00 00 00 00       	mov    $0x0,%eax
+  34:	48 83 c4 08          	add    $0x8,%rsp
+  38:	c3                   	retq   

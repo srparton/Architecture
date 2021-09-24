@@ -1,0 +1,76 @@
+
+binarySearch.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <binarySearch>:
+   0:	39 f7                	cmp    %esi,%edi
+   2:	7f 38                	jg     3c <binarySearch+0x3c>
+   4:	8d 04 37             	lea    (%rdi,%rsi,1),%eax
+   7:	41 89 c1             	mov    %eax,%r9d
+   a:	41 c1 e9 1f          	shr    $0x1f,%r9d
+   e:	44 01 c8             	add    %r9d,%eax
+  11:	d1 f8                	sar    %eax
+  13:	4c 63 c8             	movslq %eax,%r9
+  16:	47 8b 0c 88          	mov    (%r8,%r9,4),%r9d
+  1a:	41 39 c9             	cmp    %ecx,%r9d
+  1d:	74 27                	je     46 <binarySearch+0x46>
+  1f:	48 83 ec 08          	sub    $0x8,%rsp
+  23:	41 39 c9             	cmp    %ecx,%r9d
+  26:	7e 0a                	jle    32 <binarySearch+0x32>
+  28:	8d 70 ff             	lea    -0x1(%rax),%esi
+  2b:	e8 00 00 00 00       	callq  30 <binarySearch+0x30>
+  30:	eb 10                	jmp    42 <binarySearch+0x42>
+  32:	8d 78 01             	lea    0x1(%rax),%edi
+  35:	e8 00 00 00 00       	callq  3a <binarySearch+0x3a>
+  3a:	eb 06                	jmp    42 <binarySearch+0x42>
+  3c:	b8 00 00 00 00       	mov    $0x0,%eax
+  41:	c3                   	retq   
+  42:	48 83 c4 08          	add    $0x8,%rsp
+  46:	f3 c3                	repz retq 
+
+0000000000000048 <main>:
+  48:	48 83 ec 38          	sub    $0x38,%rsp
+  4c:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  53:	00 00 
+  55:	48 89 44 24 28       	mov    %rax,0x28(%rsp)
+  5a:	31 c0                	xor    %eax,%eax
+  5c:	c7 04 24 01 00 00 00 	movl   $0x1,(%rsp)
+  63:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%rsp)
+  6a:	00 
+  6b:	c7 44 24 08 03 00 00 	movl   $0x3,0x8(%rsp)
+  72:	00 
+  73:	c7 44 24 0c 04 00 00 	movl   $0x4,0xc(%rsp)
+  7a:	00 
+  7b:	c7 44 24 10 05 00 00 	movl   $0x5,0x10(%rsp)
+  82:	00 
+  83:	c7 44 24 14 06 00 00 	movl   $0x6,0x14(%rsp)
+  8a:	00 
+  8b:	c7 44 24 18 07 00 00 	movl   $0x7,0x18(%rsp)
+  92:	00 
+  93:	c7 44 24 1c 08 00 00 	movl   $0x8,0x1c(%rsp)
+  9a:	00 
+  9b:	c7 44 24 20 09 00 00 	movl   $0x9,0x20(%rsp)
+  a2:	00 
+  a3:	c7 44 24 24 0a 00 00 	movl   $0xa,0x24(%rsp)
+  aa:	00 
+  ab:	49 89 e0             	mov    %rsp,%r8
+  ae:	b9 04 00 00 00       	mov    $0x4,%ecx
+  b3:	ba 0a 00 00 00       	mov    $0xa,%edx
+  b8:	be 0a 00 00 00       	mov    $0xa,%esi
+  bd:	bf 00 00 00 00       	mov    $0x0,%edi
+  c2:	e8 00 00 00 00       	callq  c7 <main+0x7f>
+  c7:	89 c2                	mov    %eax,%edx
+  c9:	be 00 00 00 00       	mov    $0x0,%esi
+  ce:	bf 01 00 00 00       	mov    $0x1,%edi
+  d3:	b8 00 00 00 00       	mov    $0x0,%eax
+  d8:	e8 00 00 00 00       	callq  dd <main+0x95>
+  dd:	48 8b 4c 24 28       	mov    0x28(%rsp),%rcx
+  e2:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+  e9:	00 00 
+  eb:	74 05                	je     f2 <main+0xaa>
+  ed:	e8 00 00 00 00       	callq  f2 <main+0xaa>
+  f2:	b8 00 00 00 00       	mov    $0x0,%eax
+  f7:	48 83 c4 38          	add    $0x38,%rsp
+  fb:	c3                   	retq   

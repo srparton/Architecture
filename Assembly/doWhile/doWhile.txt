@@ -1,0 +1,21 @@
+
+doWhile.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	ba 01 00 00 00       	mov    $0x1,%edx
+   5:	b8 01 00 00 00       	mov    $0x1,%eax
+   a:	0f af d0             	imul   %eax,%edx
+   d:	83 c0 01             	add    $0x1,%eax
+  10:	83 f8 0a             	cmp    $0xa,%eax
+  13:	7e f5                	jle    a <main+0xa>
+  15:	48 83 ec 08          	sub    $0x8,%rsp
+  19:	be 00 00 00 00       	mov    $0x0,%esi
+  1e:	bf 01 00 00 00       	mov    $0x1,%edi
+  23:	b8 00 00 00 00       	mov    $0x0,%eax
+  28:	e8 00 00 00 00       	callq  2d <main+0x2d>
+  2d:	b8 00 00 00 00       	mov    $0x0,%eax
+  32:	48 83 c4 08          	add    $0x8,%rsp
+  36:	c3                   	retq   

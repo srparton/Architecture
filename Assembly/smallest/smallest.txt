@@ -1,0 +1,124 @@
+1w3
+smallest.o:     file format elf64-x86-64
+
+
+Disassembly of section .text: #TESTTESTTESTtest
+
+0000000000000000 <smallest>:
+   0:	b8 ff ff ff 7f       	mov    $0x7fffffff,%eax #smallestLoc = 2147483647
+   5:	41 b8 ff ff ff 7f    	mov    $0x7fffffff,%r8d #smallestNum = 2147483647
+   b:	ba 00 00 00 00       	mov    $0x0,%edx #%edx = 0 most likely i = 0
+  10:	eb 13                	jmp    25 <smallest+0x25> #jump to assembly line 25 unconditionally
+  12:	48 63 ca             	movslq %edx,%rcx #smallestLoc = i
+  15:	8b 0c 8f             	mov    (%rdi,%rcx,4),%ecx #smallestNum = array[i] # test
+  18:	41 39 c8             	cmp    %ecx,%r8d #is smallestNum greater array[i]
+  1b:	7e 05                	jle    22 <smallest+0x22> #^^^
+  1d:	89 d0                	mov    %edx,%eax #smallestLoc = i 
+  1f:	41 89 c8             	mov    %ecx,%r8d #move array into %r8d
+  22:	83 c2 01             	add    $0x1,%edx #i++
+  25:	39 f2                	cmp    %esi,%edx #while(i < size)
+  27:	7c e9                	jl     12 <smallest+0x12> #if less than jump to assembly code line 12
+  29:	f3 c3                	repz retq 
+
+000000000000002b <main>:
+  2b:	53                   	push   %rbx #saving contents of %rbx into stack. 
+  2c:	48 83 ec 20          	sub    $0x20,%rsp
+  30:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  37:	00 00 
+  39:	48 89 44 24 18       	mov    %rax,0x18(%rsp) #moving whats in rax to the offset of %rsp off set by 0x18(24)
+  3e:	31 c0                	xor    %eax,%eax #clearing out reg %eax to 0
+  40:	c7 04 24 01 00 00 00 	movl   $0x1,(%rsp) #loading 1 into array[0]
+  47:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%rsp) #loading 2 into array[1]
+  4e:	00 
+  4f:	c7 44 24 08 63 00 00 	movl   $0x63,0x8(%rsp) #loading 99 inot array[2]
+  56:	00 
+  57:	c7 44 24 0c 05 00 00 	movl   $0x5,0xc(%rsp) #loading 5 into array[3]
+  5e:	00 
+  5f:	c7 44 24 10 2c 00 00 	movl   $0x2c,0x10(%rsp) #loading 44 into array[4]
+  66:	00 
+  67:	be 05 00 00 00       	mov    $0x5,%esi #Moving 5 into reg %esi, preparing for function call 
+  6c:	48 89 e7             	mov    %rsp,%rdi #moving array into %rdi, preparing for function call
+  6f:	e8 00 00 00 00       	callq  74 <main+0x49> #call smallest
+  74:	89 c3                	mov    %eax,%ebx #copy contents %eax to %ebx 
+  76:	89 c2                	mov    %eax,%edx #copy contents %eax to %ebx 
+  78:	be 00 00 00 00       	mov    $0x0,%esi #moving 0 into reg %esi, preparing for printf call
+  7d:	bf 01 00 00 00       	mov    $0x1,%edi #moving 1 into reg %edi, preparing for printf call 
+  82:	b8 00 00 00 00       	mov    $0x0,%eax #moving 0 into reg %eax , preparing for printf call
+  87:	e8 00 00 00 00       	callq  8c <main+0x61> #calling first printf 
+  8c:	48 63 db             	movslq %ebx,%rbx #moving sign extended double word to quad word
+  8f:	8b 14 9c             	mov    (%rsp,%rbx,4),%edx #%rsp+%rbx*4 moved into %edx. Should be loading array
+  92:	be 00 00 00 00       	mov    $0x0,%esi #loading 0 into reg %esi, preparing for printf call
+  97:	bf 01 00 00 00       	mov    $0x1,%edi #loading 1 into reg %edi, preparing for printf call
+  9c:	b8 00 00 00 00       	mov    $0x0,%eax #loading 0 into reg %eax , preparing for printf call
+  a1:	e8 00 00 00 00       	callq  a6 <main+0x7b> #second printf function call
+  a6:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx #move whats in memory address of %rsp off set by 0x18 (24 dec)
+  ab:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+  b2:	00 00 
+  b4:	74 05                	je     bb <main+0x90> #looks like pgm ending execution. 
+  b6:	e8 00 00 00 00       	callq  bb <main+0x90> #makes a function call but not sure to what at this point. Does not match c pgm
+  bb:	b8 00 00 00 00       	mov    $0x0,%eax  #moves 0 into reg %eax
+  c0:	48 83 c4 20          	add    $0x20,%rsp #adds 24 to reg %rsp 
+  c4:	5b                   	pop    %rbx #pops %rbx off the stack
+  c5:	c3                   	retq   #return
+
+smallest.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <smallest>:
+   0:	b8 ff ff ff 7f       	mov    $0x7fffffff,%eax
+   5:	41 b8 ff ff ff 7f    	mov    $0x7fffffff,%r8d
+   b:	ba 00 00 00 00       	mov    $0x0,%edx
+  10:	eb 13                	jmp    25 <smallest+0x25>
+  12:	48 63 ca             	movslq %edx,%rcx
+  15:	8b 0c 8f             	mov    (%rdi,%rcx,4),%ecx
+  18:	41 39 c8             	cmp    %ecx,%r8d
+  1b:	7e 05                	jle    22 <smallest+0x22>
+  1d:	89 d0                	mov    %edx,%eax
+  1f:	41 89 c8             	mov    %ecx,%r8d
+  22:	83 c2 01             	add    $0x1,%edx
+  25:	39 f2                	cmp    %esi,%edx
+  27:	7c e9                	jl     12 <smallest+0x12>
+  29:	f3 c3                	repz retq 
+
+000000000000002b <main>:
+  2b:	53                   	push   %rbx
+  2c:	48 83 ec 20          	sub    $0x20,%rsp
+  30:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  37:	00 00 
+  39:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  3e:	31 c0                	xor    %eax,%eax
+  40:	c7 04 24 01 00 00 00 	movl   $0x1,(%rsp)
+  47:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%rsp)
+  4e:	00 
+  4f:	c7 44 24 08 63 00 00 	movl   $0x63,0x8(%rsp)
+  56:	00 
+  57:	c7 44 24 0c 05 00 00 	movl   $0x5,0xc(%rsp)
+  5e:	00 
+  5f:	c7 44 24 10 2c 00 00 	movl   $0x2c,0x10(%rsp)
+  66:	00 
+  67:	be 05 00 00 00       	mov    $0x5,%esi
+  6c:	48 89 e7             	mov    %rsp,%rdi
+  6f:	e8 00 00 00 00       	callq  74 <main+0x49>
+  74:	89 c3                	mov    %eax,%ebx
+  76:	89 c2                	mov    %eax,%edx
+  78:	be 00 00 00 00       	mov    $0x0,%esi
+  7d:	bf 01 00 00 00       	mov    $0x1,%edi
+  82:	b8 00 00 00 00       	mov    $0x0,%eax
+  87:	e8 00 00 00 00       	callq  8c <main+0x61>
+  8c:	48 63 db             	movslq %ebx,%rbx
+  8f:	8b 14 9c             	mov    (%rsp,%rbx,4),%edx
+  92:	be 00 00 00 00       	mov    $0x0,%esi
+  97:	bf 01 00 00 00       	mov    $0x1,%edi
+  9c:	b8 00 00 00 00       	mov    $0x0,%eax
+  a1:	e8 00 00 00 00       	callq  a6 <main+0x7b>
+  a6:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx
+  ab:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+  b2:	00 00 
+  b4:	74 05                	je     bb <main+0x90>
+  b6:	e8 00 00 00 00       	callq  bb <main+0x90>
+  bb:	b8 00 00 00 00       	mov    $0x0,%eax
+  c0:	48 83 c4 20          	add    $0x20,%rsp
+  c4:	5b                   	pop    %rbx
+  c5:	c3                   	retq   

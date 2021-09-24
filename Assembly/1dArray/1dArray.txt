@@ -1,0 +1,14 @@
+
+1dArray.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	b8 00 00 00 00       	mov    $0x0,%eax
+   5:	eb 03                	jmp    a <main+0xa>
+   7:	83 c0 01             	add    $0x1,%eax
+   a:	83 f8 1d             	cmp    $0x1d,%eax
+   d:	7e f8                	jle    7 <main+0x7>
+   f:	b8 00 00 00 00       	mov    $0x0,%eax
+  14:	c3                   	retq   

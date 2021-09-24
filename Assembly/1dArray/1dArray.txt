@@ -5,10 +5,13 @@
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	b8 00 00 00 00       	mov    $0x0,%eax
-   5:	eb 03                	jmp    a <main+0xa>
-   7:	83 c0 01             	add    $0x1,%eax
-   a:	83 f8 1d             	cmp    $0x1d,%eax
-   d:	7e f8                	jle    7 <main+0x7>
-   f:	b8 00 00 00 00       	mov    $0x0,%eax
+   0:	b8 00 00 00 00       	mov    $0x0,%eax #load 0 into reg %eax j = 0
+   5:	eb 03                	jmp    a <main+0xa> #unconditional jump to compareson (in for loop)
+   7:	83 c0 01             	add    $0x1,%eax #j++ adding one to reg %eax (j)
+   a:	83 f8 1d             	cmp    $0x1d,%eax #comparing j and 29
+   d:	7e f8                	jle    7 <main+0x7> # jump to assembly line 7 if less than or equal to 29
+   f:	b8 00 00 00 00       	mov    $0x0,%eax #load 0 back into reg %eax presumably for the return statment.
   14:	c3                   	retq   
+
+  #I find this assebmly code weird because it doesnt appear to be loading in the value of j in a offset memeory like 
+  #   what should be seen in a array element call. 

@@ -2,7 +2,7 @@
 smallest.o:     file format elf64-x86-64
 
 
-Disassembly of section .text: #TESTTESTTESTtest
+Disassembly of section .text: 
 
 0000000000000000 <smallest>:
    0:	b8 ff ff ff 7f       	mov    $0x7fffffff,%eax #smallestLoc = 2147483647

@@ -19,4 +19,4 @@ Disassembly of section .text:
   29:	e8 00 00 00 00       	callq  2e <main+0x2e> #call main method
   2e:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
   33:	48 83 c4 08          	add    $0x8,%rsp #add 8 into the stack pointer
-  37:	c3                   	retq   #return
+  37:	c3                   	retq   #returns

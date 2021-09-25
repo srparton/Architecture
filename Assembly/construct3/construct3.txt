@@ -5,18 +5,18 @@ construct3.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	b8 00 00 00 00       	mov    $0x0,%eax
-   5:	ba 00 00 00 00       	mov    $0x0,%edx
-   a:	eb 05                	jmp    11 <main+0x11>
-   c:	01 c2                	add    %eax,%edx
-   e:	83 c0 01             	add    $0x1,%eax
-  11:	83 f8 0e             	cmp    $0xe,%eax
-  14:	7e f6                	jle    c <main+0xc>
-  16:	48 83 ec 08          	sub    $0x8,%rsp
-  1a:	be 00 00 00 00       	mov    $0x0,%esi
-  1f:	bf 01 00 00 00       	mov    $0x1,%edi
-  24:	b8 00 00 00 00       	mov    $0x0,%eax
-  29:	e8 00 00 00 00       	callq  2e <main+0x2e>
-  2e:	b8 00 00 00 00       	mov    $0x0,%eax
-  33:	48 83 c4 08          	add    $0x8,%rsp
-  37:	c3                   	retq   
+   0:	b8 00 00 00 00       	mov    $0x0,%eax #i = 0
+   5:	ba 00 00 00 00       	mov    $0x0,%edx #answer = 0
+   a:	eb 05                	jmp    11 <main+0x11> #unconditional jump to line 11
+   c:	01 c2                	add    %eax,%edx #answer= answer + i
+   e:	83 c0 01             	add    $0x1,%eax #i++
+  11:	83 f8 0e             	cmp    $0xe,%eax #compare i and 15 (0xe)
+  14:	7e f6                	jle    c <main+0xc> #jump to line c (anser = answer + i) if less than
+  16:	48 83 ec 08          	sub    $0x8,%rsp #subtract 8 from stack pointer
+  1a:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi
+  1f:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi
+  24:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  29:	e8 00 00 00 00       	callq  2e <main+0x2e> #call main method
+  2e:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  33:	48 83 c4 08          	add    $0x8,%rsp #add 8 into the stack pointer
+  37:	c3                   	retq   #return

@@ -8,164 +8,164 @@ Disassembly of section .text:
    0:	48 83 ec 38          	sub    $0x38,%rsp
    4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
    b:	00 00 
-   d:	48 89 44 24 28       	mov    %rax,0x28(%rsp)
-  12:	31 c0                	xor    %eax,%eax
-  14:	66 c7 44 24 10 ff 7f 	movw   $0x7fff,0x10(%rsp)
-  1b:	ba ff 7f 00 00       	mov    $0x7fff,%edx
-  20:	be 00 00 00 00       	mov    $0x0,%esi
-  25:	bf 01 00 00 00       	mov    $0x1,%edi
-  2a:	e8 00 00 00 00       	callq  2f <main+0x2f>
-  2f:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx
-  34:	be 00 00 00 00       	mov    $0x0,%esi
-  39:	bf 01 00 00 00       	mov    $0x1,%edi
-  3e:	b8 00 00 00 00       	mov    $0x0,%eax
-  43:	e8 00 00 00 00       	callq  48 <main+0x48>
-  48:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx
-  4d:	be 00 00 00 00       	mov    $0x0,%esi
-  52:	bf 01 00 00 00       	mov    $0x1,%edi
-  57:	b8 00 00 00 00       	mov    $0x0,%eax
-  5c:	e8 00 00 00 00       	callq  61 <main+0x61>
-  61:	0f bf 54 24 10       	movswl 0x10(%rsp),%edx
-  66:	be 00 00 00 00       	mov    $0x0,%esi
-  6b:	bf 01 00 00 00       	mov    $0x1,%edi
-  70:	b8 00 00 00 00       	mov    $0x0,%eax
-  75:	e8 00 00 00 00       	callq  7a <main+0x7a>
-  7a:	66 c7 44 24 12 ff ff 	movw   $0xffff,0x12(%rsp)
-  81:	ba ff ff 00 00       	mov    $0xffff,%edx
-  86:	be 00 00 00 00       	mov    $0x0,%esi
-  8b:	bf 01 00 00 00       	mov    $0x1,%edi
-  90:	b8 00 00 00 00       	mov    $0x0,%eax
-  95:	e8 00 00 00 00       	callq  9a <main+0x9a>
-  9a:	48 8d 54 24 12       	lea    0x12(%rsp),%rdx
-  9f:	be 00 00 00 00       	mov    $0x0,%esi
-  a4:	bf 01 00 00 00       	mov    $0x1,%edi
-  a9:	b8 00 00 00 00       	mov    $0x0,%eax
+   d:	48 89 44 24 28       	mov    %rax,0x28(%rsp) #load into rax what is stored in stack pointer offset by 0x28
+  12:	31 c0                	xor    %eax,%eax #clear eax register
+  14:	66 c7 44 24 10 ff 7f 	movw   $0x7fff,0x10(%rsp) #move whats in stack pointer off set by 0x10
+  1b:	ba ff 7f 00 00       	mov    $0x7fff,%edx #move whats in edx into memory location 0x7fff
+  20:	be 00 00 00 00       	mov    $0x0,%esi #move esi into 0x0 memory location
+  25:	bf 01 00 00 00       	mov    $0x1,%edi #move edi into 0x1 memory locaiton 
+  2a:	e8 00 00 00 00       	callq  2f <main+0x2f> #call printf  
+  2f:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx #load memory address of rdx into stack pointer offset by 16
+  34:	be 00 00 00 00       	mov    $0x0,%esi #setting up for printf call 
+  39:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  3e:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  43:	e8 00 00 00 00       	callq  48 <main+0x48> #printf
+  48:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx #load memory address of rdx into stack pointer offset by 16
+  4d:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf function call
+  52:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  57:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  5c:	e8 00 00 00 00       	callq  61 <main+0x61> #printf
+  61:	0f bf 54 24 10       	movswl 0x10(%rsp),%edx #load edx memory address into stackpointer offset by 16
+  66:	be 00 00 00 00       	mov    $0x0,%esi #^^^
+  6b:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  70:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  75:	e8 00 00 00 00       	callq  7a <main+0x7a> #printf
+  7a:	66 c7 44 24 12 ff ff 	movw   $0xffff,0x12(%rsp) #load memory address of stackpointer off set by 18
+  81:	ba ff ff 00 00       	mov    $0xffff,%edx #load into memory location 0xffff whats in edx
+  86:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf call 
+  8b:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  90:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  95:	e8 00 00 00 00       	callq  9a <main+0x9a> #printf 
+  9a:	48 8d 54 24 12       	lea    0x12(%rsp),%rdx # load memeory address of rdx into stackpointer offset by 18
+  9f:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf call
+  a4:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  a9:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
   ae:	e8 00 00 00 00       	callq  b3 <main+0xb3>
-  b3:	48 8d 54 24 12       	lea    0x12(%rsp),%rdx
-  b8:	be 00 00 00 00       	mov    $0x0,%esi
-  bd:	bf 01 00 00 00       	mov    $0x1,%edi
-  c2:	b8 00 00 00 00       	mov    $0x0,%eax
-  c7:	e8 00 00 00 00       	callq  cc <main+0xcc>
-  cc:	0f b7 54 24 12       	movzwl 0x12(%rsp),%edx
-  d1:	be 00 00 00 00       	mov    $0x0,%esi
-  d6:	bf 01 00 00 00       	mov    $0x1,%edi
-  db:	b8 00 00 00 00       	mov    $0x0,%eax
-  e0:	e8 00 00 00 00       	callq  e5 <main+0xe5>
-  e5:	c7 44 24 14 ff ff ff 	movl   $0xffffffff,0x14(%rsp)
+  b3:	48 8d 54 24 12       	lea    0x12(%rsp),%rdx # load memeory address of rdx into stackpointer offset by 18
+  b8:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf call
+  bd:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  c2:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  c7:	e8 00 00 00 00       	callq  cc <main+0xcc> #printf
+  cc:	0f b7 54 24 12       	movzwl 0x12(%rsp),%edx #load memory address of edx into stack pointer offset by 18
+  d1:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf call
+  d6:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  db:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+  e0:	e8 00 00 00 00       	callq  e5 <main+0xe5> #printf 
+  e5:	c7 44 24 14 ff ff ff 	movl   $0xffffffff,0x14(%rsp) #move whats in stack pointer offset by 0x14 into memory address 0xffffffff
   ec:	ff 
-  ed:	ba ff ff ff ff       	mov    $0xffffffff,%edx
-  f2:	be 00 00 00 00       	mov    $0x0,%esi
-  f7:	bf 01 00 00 00       	mov    $0x1,%edi
-  fc:	b8 00 00 00 00       	mov    $0x0,%eax
- 101:	e8 00 00 00 00       	callq  106 <main+0x106>
- 106:	48 8d 54 24 14       	lea    0x14(%rsp),%rdx
- 10b:	be 00 00 00 00       	mov    $0x0,%esi
- 110:	bf 01 00 00 00       	mov    $0x1,%edi
- 115:	b8 00 00 00 00       	mov    $0x0,%eax
- 11a:	e8 00 00 00 00       	callq  11f <main+0x11f>
- 11f:	48 8d 54 24 14       	lea    0x14(%rsp),%rdx
- 124:	be 00 00 00 00       	mov    $0x0,%esi
- 129:	bf 01 00 00 00       	mov    $0x1,%edi
- 12e:	b8 00 00 00 00       	mov    $0x0,%eax
- 133:	e8 00 00 00 00       	callq  138 <main+0x138>
- 138:	8b 54 24 14          	mov    0x14(%rsp),%edx
- 13c:	be 00 00 00 00       	mov    $0x0,%esi
- 141:	bf 01 00 00 00       	mov    $0x1,%edi
- 146:	b8 00 00 00 00       	mov    $0x0,%eax
- 14b:	e8 00 00 00 00       	callq  150 <main+0x150>
- 150:	c7 44 24 18 ff ff ff 	movl   $0x7fffffff,0x18(%rsp)
+  ed:	ba ff ff ff ff       	mov    $0xffffffff,%edx #move contents of edx into 0xffffffff
+  f2:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call 
+  f7:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+  fc:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 101:	e8 00 00 00 00       	callq  106 <main+0x106> #printf
+ 106:	48 8d 54 24 14       	lea    0x14(%rsp),%rdx # load memory address of rdx into stack pointer offset by 20
+ 10b:	be 00 00 00 00       	mov    $0x0,%esi #preparing for function call
+ 110:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 115:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 11a:	e8 00 00 00 00       	callq  11f <main+0x11f> #printf
+ 11f:	48 8d 54 24 14       	lea    0x14(%rsp),%rdx # load memory address of rdx into stack pointer offset by 20
+ 124:	be 00 00 00 00       	mov    $0x0,%esi #preparing for function call
+ 129:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 12e:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 133:	e8 00 00 00 00       	callq  138 <main+0x138> #printf 
+ 138:	8b 54 24 14          	mov    0x14(%rsp),%edx # load memory address of edx into stack pointer offset by 20
+ 13c:	be 00 00 00 00       	mov    $0x0,%esi #preparing for function call
+ 141:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 146:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 14b:	e8 00 00 00 00       	callq  150 <main+0x150> #printf 
+ 150:	c7 44 24 18 ff ff ff 	movl   $0x7fffffff,0x18(%rsp) #load whats in stack pointer off set by 24 into memory location 0x7fffffff
  157:	7f 
- 158:	ba ff ff ff 7f       	mov    $0x7fffffff,%edx
- 15d:	be 00 00 00 00       	mov    $0x0,%esi
- 162:	bf 01 00 00 00       	mov    $0x1,%edi
- 167:	b8 00 00 00 00       	mov    $0x0,%eax
- 16c:	e8 00 00 00 00       	callq  171 <main+0x171>
- 171:	48 8d 54 24 18       	lea    0x18(%rsp),%rdx
- 176:	be 00 00 00 00       	mov    $0x0,%esi
- 17b:	bf 01 00 00 00       	mov    $0x1,%edi
- 180:	b8 00 00 00 00       	mov    $0x0,%eax
- 185:	e8 00 00 00 00       	callq  18a <main+0x18a>
- 18a:	48 8d 54 24 18       	lea    0x18(%rsp),%rdx
- 18f:	be 00 00 00 00       	mov    $0x0,%esi
- 194:	bf 01 00 00 00       	mov    $0x1,%edi
- 199:	b8 00 00 00 00       	mov    $0x0,%eax
- 19e:	e8 00 00 00 00       	callq  1a3 <main+0x1a3>
- 1a3:	8b 54 24 18          	mov    0x18(%rsp),%edx
- 1a7:	be 00 00 00 00       	mov    $0x0,%esi
- 1ac:	bf 01 00 00 00       	mov    $0x1,%edi
- 1b1:	b8 00 00 00 00       	mov    $0x0,%eax
- 1b6:	e8 00 00 00 00       	callq  1bb <main+0x1bb>
- 1bb:	48 ba ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rdx
+ 158:	ba ff ff ff 7f       	mov    $0x7fffffff,%edx #preparing for printf call
+ 15d:	be 00 00 00 00       	mov    $0x0,%esi #^^^
+ 162:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 167:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 16c:	e8 00 00 00 00       	callq  171 <main+0x171> printf 
+ 171:	48 8d 54 24 18       	lea    0x18(%rsp),%rdx #load into stack pointer offset by 24 whats in memory addres of rdx 
+ 176:	be 00 00 00 00       	mov    $0x0,%esi #prepare for printf call
+ 17b:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 180:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 185:	e8 00 00 00 00       	callq  18a <main+0x18a> #printf
+ 18a:	48 8d 54 24 18       	lea    0x18(%rsp),%rdx #load into stack pointer offset by 24 whats in memory addres of rdx 
+ 18f:	be 00 00 00 00       	mov    $0x0,%esi #Preparing for function call
+ 194:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 199:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 19e:	e8 00 00 00 00       	callq  1a3 <main+0x1a3> #printf
+ 1a3:	8b 54 24 18          	mov    0x18(%rsp),%edx #load into stack pointer offset by 24 whats in memory addres of edx 
+ 1a7:	be 00 00 00 00       	mov    $0x0,%esi #Preparing for function call
+ 1ac:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
+ 1b1:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 1b6:	e8 00 00 00 00       	callq  1bb <main+0x1bb> #printf
+ 1bb:	48 ba ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rdx #move whats in rdx into memory location 0x7fffffffffffffff
  1c2:	ff ff 7f 
- 1c5:	48 89 54 24 20       	mov    %rdx,0x20(%rsp)
- 1ca:	be 00 00 00 00       	mov    $0x0,%esi
- 1cf:	bf 01 00 00 00       	mov    $0x1,%edi
- 1d4:	b8 00 00 00 00       	mov    $0x0,%eax
- 1d9:	e8 00 00 00 00       	callq  1de <main+0x1de>
- 1de:	48 8d 54 24 20       	lea    0x20(%rsp),%rdx
- 1e3:	be 00 00 00 00       	mov    $0x0,%esi
- 1e8:	bf 01 00 00 00       	mov    $0x1,%edi
- 1ed:	b8 00 00 00 00       	mov    $0x0,%eax
- 1f2:	e8 00 00 00 00       	callq  1f7 <main+0x1f7>
- 1f7:	48 8d 54 24 20       	lea    0x20(%rsp),%rdx
- 1fc:	be 00 00 00 00       	mov    $0x0,%esi
- 201:	bf 01 00 00 00       	mov    $0x1,%edi
- 206:	b8 00 00 00 00       	mov    $0x0,%eax
+ 1c5:	48 89 54 24 20       	mov    %rdx,0x20(%rsp) #load into rdx whats in stackpointer offset by 32
+ 1ca:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call 
+ 1cf:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 1d4:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
+ 1d9:	e8 00 00 00 00       	callq  1de <main+0x1de> #printf 
+ 1de:	48 8d 54 24 20       	lea    0x20(%rsp),%rdx #load memory addres of rdx into stack pointer offset by 32
+ 1e3:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call
+ 1e8:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 1ed:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 1f2:	e8 00 00 00 00       	callq  1f7 <main+0x1f7> #printf 
+ 1f7:	48 8d 54 24 20       	lea    0x20(%rsp),%rdx #load into rdx whats in stack pointer offset by 32
+ 1fc:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call
+ 201:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 206:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
  20b:	e8 00 00 00 00       	callq  210 <main+0x210>
  210:	48 8b 54 24 20       	mov    0x20(%rsp),%rdx
- 215:	be 00 00 00 00       	mov    $0x0,%esi
- 21a:	bf 01 00 00 00       	mov    $0x1,%edi
- 21f:	b8 00 00 00 00       	mov    $0x0,%eax
- 224:	e8 00 00 00 00       	callq  229 <main+0x229>
- 229:	c7 44 24 1c 51 06 9e 	movl   $0x3f9e0651,0x1c(%rsp)
+ 215:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call
+ 21a:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 21f:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 224:	e8 00 00 00 00       	callq  229 <main+0x229> #printf 
+ 229:	c7 44 24 1c 51 06 9e 	movl   $0x3f9e0651,0x1c(%rsp) #load whats in stack pointer offset by 28 into memory address 0x3f9e0651
  230:	3f 
  231:	f2 0f 10 05 00 00 00 	movsd  0x0(%rip),%xmm0        # 239 <main+0x239>
  238:	00 
- 239:	be 00 00 00 00       	mov    $0x0,%esi
- 23e:	bf 01 00 00 00       	mov    $0x1,%edi
- 243:	b8 01 00 00 00       	mov    $0x1,%eax
- 248:	e8 00 00 00 00       	callq  24d <main+0x24d>
- 24d:	48 8d 54 24 1c       	lea    0x1c(%rsp),%rdx
- 252:	be 00 00 00 00       	mov    $0x0,%esi
- 257:	bf 01 00 00 00       	mov    $0x1,%edi
- 25c:	b8 00 00 00 00       	mov    $0x0,%eax
- 261:	e8 00 00 00 00       	callq  266 <main+0x266>
- 266:	48 8d 54 24 1c       	lea    0x1c(%rsp),%rdx
- 26b:	be 00 00 00 00       	mov    $0x0,%esi
- 270:	bf 01 00 00 00       	mov    $0x1,%edi
- 275:	b8 00 00 00 00       	mov    $0x0,%eax
- 27a:	e8 00 00 00 00       	callq  27f <main+0x27f>
- 27f:	f3 0f 5a 44 24 1c    	cvtss2sd 0x1c(%rsp),%xmm0
- 285:	be 00 00 00 00       	mov    $0x0,%esi
- 28a:	bf 01 00 00 00       	mov    $0x1,%edi
- 28f:	b8 01 00 00 00       	mov    $0x1,%eax
- 294:	e8 00 00 00 00       	callq  299 <main+0x299>
- 299:	c6 44 24 0f 63       	movb   $0x63,0xf(%rsp)
- 29e:	ba 63 00 00 00       	mov    $0x63,%edx
- 2a3:	be 00 00 00 00       	mov    $0x0,%esi
- 2a8:	bf 01 00 00 00       	mov    $0x1,%edi
- 2ad:	b8 00 00 00 00       	mov    $0x0,%eax
- 2b2:	e8 00 00 00 00       	callq  2b7 <main+0x2b7>
- 2b7:	48 8d 54 24 0f       	lea    0xf(%rsp),%rdx
- 2bc:	be 00 00 00 00       	mov    $0x0,%esi
- 2c1:	bf 01 00 00 00       	mov    $0x1,%edi
- 2c6:	b8 00 00 00 00       	mov    $0x0,%eax
- 2cb:	e8 00 00 00 00       	callq  2d0 <main+0x2d0>
- 2d0:	48 8d 54 24 0f       	lea    0xf(%rsp),%rdx
- 2d5:	be 00 00 00 00       	mov    $0x0,%esi
- 2da:	bf 01 00 00 00       	mov    $0x1,%edi
- 2df:	b8 00 00 00 00       	mov    $0x0,%eax
+ 239:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call 
+ 23e:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 243:	b8 01 00 00 00       	mov    $0x1,%eax #^^^ 
+ 248:	e8 00 00 00 00       	callq  24d <main+0x24d> #printf
+ 24d:	48 8d 54 24 1c       	lea    0x1c(%rsp),%rdx #load rdx memory addres into rsp offset by 0x1c
+ 252:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 257:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 25c:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 261:	e8 00 00 00 00       	callq  266 <main+0x266> #printf
+ 266:	48 8d 54 24 1c       	lea    0x1c(%rsp),%rdx  #load rdx memory addres into rsp offset by 0x1c
+ 26b:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 270:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 275:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 27a:	e8 00 00 00 00       	callq  27f <main+0x27f> #printf
+ 27f:	f3 0f 5a 44 24 1c    	cvtss2sd 0x1c(%rsp),%xmm0  #load xmm0 memory addres into rsp offset by 0x1c
+ 285:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 28a:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 28f:	b8 01 00 00 00       	mov    $0x1,%eax #^^^ 
+ 294:	e8 00 00 00 00       	callq  299 <main+0x299> #printf 
+ 299:	c6 44 24 0f 63       	movb   $0x63,0xf(%rsp) #load into memory address 0x63 whats in stack pointer offset by 15
+ 29e:	ba 63 00 00 00       	mov    $0x63,%edx #prepare function call
+ 2a3:	be 00 00 00 00       	mov    $0x0,%esi #^^^ 
+ 2a8:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 2ad:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 2b2:	e8 00 00 00 00       	callq  2b7 <main+0x2b7> #printf
+ 2b7:	48 8d 54 24 0f       	lea    0xf(%rsp),%rdx  #load rdx memory addres into rsp offset by 0x15
+ 2bc:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 2c1:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 2c6:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 2cb:	e8 00 00 00 00       	callq  2d0 <main+0x2d0> #printf 
+ 2d0:	48 8d 54 24 0f       	lea    0xf(%rsp),%rdx  #load rdx memory addres into rsp offset by 0xf
+ 2d5:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 2da:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 2df:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
  2e4:	e8 00 00 00 00       	callq  2e9 <main+0x2e9>
- 2e9:	0f be 54 24 0f       	movsbl 0xf(%rsp),%edx
- 2ee:	be 00 00 00 00       	mov    $0x0,%esi
- 2f3:	bf 01 00 00 00       	mov    $0x1,%edi
- 2f8:	b8 00 00 00 00       	mov    $0x0,%eax
- 2fd:	e8 00 00 00 00       	callq  302 <main+0x302>
- 302:	48 8b 4c 24 28       	mov    0x28(%rsp),%rcx
+ 2e9:	0f be 54 24 0f       	movsbl 0xf(%rsp),%edx #load edx memory addres into rsp offset by 0xf
+ 2ee:	be 00 00 00 00       	mov    $0x0,%esi #prepare function call
+ 2f3:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
+ 2f8:	b8 00 00 00 00       	mov    $0x0,%eax #^^^ 
+ 2fd:	e8 00 00 00 00       	callq  302 <main+0x302> #printf 
+ 302:	48 8b 4c 24 28       	mov    0x28(%rsp),%rcx #prepare for function return 
  307:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
  30e:	00 00 
  310:	74 05                	je     317 <main+0x317>
  312:	e8 00 00 00 00       	callq  317 <main+0x317>
- 317:	b8 00 00 00 00       	mov    $0x0,%eax
- 31c:	48 83 c4 38          	add    $0x38,%rsp
+ 317:	b8 00 00 00 00       	mov    $0x0,%eax #load whats in edx into 0 memeory address 
+ 31c:	48 83 c4 38          	add    $0x38,%rsp #reset rsp into original positon. 
  320:	c3                   	retq   

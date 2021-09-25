@@ -5,17 +5,17 @@ struct.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	48 83 ec 08          	sub    $0x8,%rsp
-   4:	ba 0a 00 00 00       	mov    $0xa,%edx
-   9:	be 00 00 00 00       	mov    $0x0,%esi
-   e:	bf 01 00 00 00       	mov    $0x1,%edi
-  13:	b8 00 00 00 00       	mov    $0x0,%eax
-  18:	e8 00 00 00 00       	callq  1d <main+0x1d>
-  1d:	ba 78 00 00 00       	mov    $0x78,%edx
-  22:	be 00 00 00 00       	mov    $0x0,%esi
-  27:	bf 01 00 00 00       	mov    $0x1,%edi
-  2c:	b8 00 00 00 00       	mov    $0x0,%eax
-  31:	e8 00 00 00 00       	callq  36 <main+0x36>
-  36:	b8 00 00 00 00       	mov    $0x0,%eax
-  3b:	48 83 c4 08          	add    $0x8,%rsp
+   0:	48 83 ec 08          	sub    $0x8,%rsp #subtract 8 from the stack pointer
+   4:	ba 0a 00 00 00       	mov    $0xa,%edx #move contents into 0xa (10) memory location
+   9:	be 00 00 00 00       	mov    $0x0,%esi #move contents of esi into 0x0 memory location
+   e:	bf 01 00 00 00       	mov    $0x1,%edi #move contents of edi into memory location 
+  13:	b8 00 00 00 00       	mov    $0x0,%eax #move contents of eax into 0xo memory location 
+  18:	e8 00 00 00 00       	callq  1d <main+0x1d> #call printf 
+  1d:	ba 78 00 00 00       	mov    $0x78,%edx #move contents of edx into memory location 0x78
+  22:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf 
+  27:	bf 01 00 00 00       	mov    $0x1,%edi #preparing for printf 
+  2c:	b8 00 00 00 00       	mov    $0x0,%eax #preparing for printf 
+  31:	e8 00 00 00 00       	callq  36 <main+0x36> call printf
+  36:	b8 00 00 00 00       	mov    $0x0,%eax #prepare for retrun of 0
+  3b:	48 83 c4 08          	add    $0x8,%rsp #restore stack pointer 
   3f:	c3                   	retq   

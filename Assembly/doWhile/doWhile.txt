@@ -5,17 +5,17 @@ doWhile.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	ba 01 00 00 00       	mov    $0x1,%edx
-   5:	b8 01 00 00 00       	mov    $0x1,%eax
-   a:	0f af d0             	imul   %eax,%edx
-   d:	83 c0 01             	add    $0x1,%eax
-  10:	83 f8 0a             	cmp    $0xa,%eax
-  13:	7e f5                	jle    a <main+0xa>
-  15:	48 83 ec 08          	sub    $0x8,%rsp
-  19:	be 00 00 00 00       	mov    $0x0,%esi
-  1e:	bf 01 00 00 00       	mov    $0x1,%edi
-  23:	b8 00 00 00 00       	mov    $0x0,%eax
-  28:	e8 00 00 00 00       	callq  2d <main+0x2d>
-  2d:	b8 00 00 00 00       	mov    $0x0,%eax
-  32:	48 83 c4 08          	add    $0x8,%rsp
-  36:	c3                   	retq   
+   0:	ba 01 00 00 00       	mov    $0x1,%edx-> move 1 into register edx
+   5:	b8 01 00 00 00       	mov    $0x1,%eax-> move 1 into register eax
+   a:	0f af d0             	imul   %eax,%edx-> multiply register eax and edx
+   d:	83 c0 01             	add    $0x1,%eax-> and one to the calue in register eax
+  10:	83 f8 0a             	cmp    $0xa,%eax-> is value in eax less than or equal 10
+  13:	7e f5                	jle    a <main+0xa>-> jump back to do (lable a) if last line true
+  15:	48 83 ec 08          	sub    $0x8,%rsp-> allocating memory on stack frame
+  19:	be 00 00 00 00       	mov    $0x0,%esi-> move 0 into register esi
+  1e:	bf 01 00 00 00       	mov    $0x1,%edi-> move 1 into register edi
+  23:	b8 00 00 00 00       	mov    $0x0,%eax-> move 0 into register eax
+  28:	e8 00 00 00 00       	callq  2d <main+0x2d>-> call main
+  2d:	b8 00 00 00 00       	mov    $0x0,%eax-> move 0 into eax
+  32:	48 83 c4 08          	add    $0x8,%rsp-> delalocate memory on the stack
+  36:	c3                   	retq   -> return 

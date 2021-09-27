@@ -17,13 +17,13 @@ Disassembly of section .text:
   16:	eb 43                	jmp    5b <printMatrix+0x5b> #unconditional jump to line 5b
   18:	89 e8                	mov    %ebp,%eax #move value of %ebp (0) into reg %eax 
   1a:	0f af c3             	imul   %ebx,%eax #signed multiply of %ebx and %eax (row*col)
-  1d:	48 63 d0             	movslq %eax,%rdx #move sign extended double word to quad word 
-  20:	48 63 c3             	movslq %ebx,%rax #move sign extended double word to quad word the product into reg %rdx 
-  23:	48 01 d0             	add    %rdx,%rax #add whats in %rax into %rdx 
-  26:	41 8b 54 85 00       	mov    0x0(%r13,%rax,4),%edx #load into %edx the matrix variable.
+  1d:	48 63 d0             	movslq %eax,%rdx #move sign extended double word to quad word from %eax into %rdx
+  20:	48 63 c3             	movslq %ebx,%rax #move sign extended double word to quad word into reg %rdx 
+  23:	48 01 d0             	add    %rdx,%rax #add whats in %rdx into %rax, ASSUME STD IS ADD S,D
+  26:	41 8b 54 85 00       	mov    0x0(%r13,%rax,4),%edx #load into %edx the 2d matrix variable.
   2b:	be 00 00 00 00       	mov    $0x0,%esi #load 0 into %esi, preparing for printf function call
-  30:	bf 01 00 00 00       	mov    $0x1,%edi #load 1 into %esi, preparing for printf function call
-  35:	b8 00 00 00 00       	mov    $0x0,%eax #load 0 into %esi, preparing for printf function call
+  30:	bf 01 00 00 00       	mov    $0x1,%edi #load 1 into %edi, preparing for printf function call
+  35:	b8 00 00 00 00       	mov    $0x0,%eax #load 0 into %eax, preparing for printf function call
   3a:	e8 00 00 00 00       	callq  3f <printMatrix+0x3f> #call printf 
   3f:	83 c3 01             	add    $0x1,%ebx #add 1 to %ebx most likly this is col++
   42:	eb 05                	jmp    49 <printMatrix+0x49> #unconditional jump to line 49
@@ -55,27 +55,27 @@ Disassembly of section .text:
   7e:	0f 9e c0             	setle  %al #sets condition flag to less than 
   81:	84 c1                	test   %al,%cl # and compareson of al and cl 
   83:	74 06                	je     8b <minimum+0x22> #jump if equal to line 8b 
-  85:	89 f0                	mov    %esi,%eax #move and return %esi (b) into %eax 
+  85:	89 f0                	mov    %esi,%eax #move %esi (b) into %eax and return
   87:	c3                   	retq   
-  88:	89 f8                	mov    %edi,%eax #move a into %eax and return
+  88:	89 f8                	mov    %edi,%eax #move (a) into %eax and return
   8a:	c3                   	retq   
-  8b:	89 d0                	mov    %edx,%eax #move c into %eax and return 
+  8b:	89 d0                	mov    %edx,%eax #move (c) into %eax and return 
   8d:	c3                   	retq   
 
 000000000000008e <Levensthain>:
   8e:	55                   	push   %rbp
-  8f:	48 89 e5             	mov    %rsp,%rbp
+  8f:	48 89 e5             	mov    %rsp,%rbp #saving stack base pointer location
   92:	41 57                	push   %r15
   94:	41 56                	push   %r14
   96:	41 55                	push   %r13
   98:	41 54                	push   %r12
-  9a:	53                   	push   %rbx #saving nonvolitile regs contents to stack 
-  9b:	48 83 ec 58          	sub    $0x58,%rsp #subtract 86 from stack pointer reg 
-  9f:	48 89 7d a8          	mov    %rdi,-0x58(%rbp) #store into %rdi whats in reg base pointer offset by 0x58
-  a3:	48 89 75 a0          	mov    %rsi,-0x60(%rbp) #store into %rsi whats in reg base pointer offset by 0x60
-  a7:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax #not sure whats happening here 
+  9a:	53                   	push   %rbx #^^^saving nonvolitile regs contents to stack 
+  9b:	48 83 ec 58          	sub    $0x58,%rsp #subtract 86 from stack pointer reg. Saving space for 2D array
+  9f:	48 89 7d a8          	mov    %rdi,-0x58(%rbp) #store whats in %rdi into reg base pointer offset by 0x58
+  a3:	48 89 75 a0          	mov    %rsi,-0x60(%rbp) #store whats in %rsi into reg base pointer offset by 0x60
+  a7:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax #not sure whats happening here. Just know a value of 40 is being loaded into %rax
   ae:	00 00 
-  b0:	48 89 45 c8          	mov    %rax,-0x38(%rbp) #store into %rax whats in reg base pointer offset by 0x38
+  b0:	48 89 45 c8          	mov    %rax,-0x38(%rbp) #store what in %rax into reg base pointer offset by 0x38
   b4:	31 c0                	xor    %eax,%eax #clear out contents of eax with exclusive or
   b6:	48 c7 c2 ff ff ff ff 	mov    $0xffffffffffffffff,%rdx #store 0xffffffffffffffff (-1) into %rdx
   bd:	48 89 d1             	mov    %rdx,%rcx #store -1 into %rcx 
@@ -85,163 +85,163 @@ Disassembly of section .text:
   c8:	48 89 cb             	mov    %rcx,%rbx #copy contents to rbx 
   cb:	48 89 4d 98          	mov    %rcx,-0x68(%rbp) #move rcx into memory location -0x68 offset from the base pointer
   cf:	89 4d b8             	mov    %ecx,-0x48(%rbp) #move ecx into memory location -0x48 offset from the base pointer
-  d2:	48 89 d1             	mov    %rdx,%rcx #move rdx into rcx  
+  d2:	48 89 d1             	mov    %rdx,%rcx #move rdx contents into rcx  
   d5:	48 89 f7             	mov    %rsi,%rdi #move rsi into rdi 
   d8:	f2 ae                	repnz scas %es:(%rdi),%al #repeats following string operation
-  da:	48 89 c8             	mov    %rcx,%rax
-  dd:	48 f7 d0             	not    %rax
-  e0:	48 01 d0             	add    %rdx,%rax
-  e3:	48 89 c1             	mov    %rax,%rcx
-  e6:	48 89 45 90          	mov    %rax,-0x70(%rbp)
-  ea:	89 c6                	mov    %eax,%esi
-  ec:	89 45 bc             	mov    %eax,-0x44(%rbp)
-  ef:	89 d8                	mov    %ebx,%eax
-  f1:	83 c0 01             	add    $0x1,%eax
-  f4:	8d 51 01             	lea    0x1(%rcx),%edx #most likly working through first for loop. 
-  f7:	48 98                	cltq   
-  f9:	4c 8d 3c 85 00 00 00 	lea    0x0(,%rax,4),%r15
+  da:	48 89 c8             	mov    %rcx,%rax  #loads %rcx(1) into rax (was -1 then not to 1)
+  dd:	48 f7 d0             	not    %rax #flips bits of rax (-1)
+  e0:	48 01 d0             	add    %rdx,%rax #add rdx contents into rax (-1_)
+  e3:	48 89 c1             	mov    %rax,%rcx #add contents of rax into rcx
+  e6:	48 89 45 90          	mov    %rax,-0x70(%rbp) #store contents of rax into stack base pointer offset by -112
+  ea:	89 c6                	mov    %eax,%esi #store contents of eax into esi
+  ec:	89 45 bc             	mov    %eax,-0x44(%rbp) #store contents of eax into stack base pointer off set by -68
+  ef:	89 d8                	mov    %ebx,%eax #move ebx into eax
+  f1:	83 c0 01             	add    $0x1,%eax # add 1 to eax 
+  f4:	8d 51 01             	lea    0x1(%rcx),%edx #loads address of rcx into edx 
+  f7:	48 98                	cltq   #sign extends to quadword 
+  f9:	4c 8d 3c 85 00 00 00 	lea    0x0(,%rax,4),%r15 #loads address of rax offset by 4 into r15
  100:	00 
- 101:	48 63 d2             	movslq %edx,%rdx
- 104:	48 0f af c2          	imul   %rdx,%rax
- 108:	48 8d 04 85 12 00 00 	lea    0x12(,%rax,4),%rax
+ 101:	48 63 d2             	movslq %edx,%rdx #move edx into rdx (quadword)
+ 104:	48 0f af c2          	imul   %rdx,%rax # multiply rdx by rax and store in rax 
+ 108:	48 8d 04 85 12 00 00 	lea    0x12(,%rax,4),%rax # loads address of rax +18 X 4 into rax 
  10f:	00 
- 110:	48 83 e0 f0          	and    $0xfffffffffffffff0,%rax
- 114:	48 29 c4             	sub    %rax,%rsp
- 117:	48 8d 44 24 03       	lea    0x3(%rsp),%rax
- 11c:	48 c1 e8 02          	shr    $0x2,%rax
- 120:	48 8d 0c 85 00 00 00 	lea    0x0(,%rax,4),%rcx
+ 110:	48 83 e0 f0          	and    $0xfffffffffffffff0,%rax masking rax with -16
+ 114:	48 29 c4             	sub    %rax,%rsp #subtract rsp with rax value 
+ 117:	48 8d 44 24 03       	lea    0x3(%rsp),%rax #loads effective address of stack pointer +3
+ 11c:	48 c1 e8 02          	shr    $0x2,%rax #shifts bits to the right by 2 in rax register
+ 120:	48 8d 0c 85 00 00 00 	lea    0x0(,%rax,4),%rcx #loads address of rax offset by 4 into rcx 
  127:	00 
- 128:	48 89 4d 88          	mov    %rcx,-0x78(%rbp)
- 12c:	49 89 cd             	mov    %rcx,%r13
- 12f:	49 c1 ef 02          	shr    $0x2,%r15
- 133:	c7 04 85 00 00 00 00 	movl   $0x0,0x0(,%rax,4)
+ 128:	48 89 4d 88          	mov    %rcx,-0x78(%rbp) # stores rcx into stack base pointer offset by -120
+ 12c:	49 89 cd             	mov    %rcx,%r13 #move value of rcx into r13
+ 12f:	49 c1 ef 02          	shr    $0x2,%r15 #shifts r15 bits to the right by 2 bits 
+ 133:	c7 04 85 00 00 00 00 	movl   $0x0,0x0(,%rax,4) #moves 0 into rax offset by 4
  13a:	00 00 00 00 
- 13e:	ba 01 00 00 00       	mov    $0x1,%edx
- 143:	eb 20                	jmp    165 <Levensthain+0xd7>
- 145:	8d 42 ff             	lea    -0x1(%rdx),%eax
- 148:	48 98                	cltq   
- 14a:	49 0f af c7          	imul   %r15,%rax
- 14e:	41 8b 4c 85 00       	mov    0x0(%r13,%rax,4),%ecx
- 153:	83 c1 01             	add    $0x1,%ecx
- 156:	48 63 c2             	movslq %edx,%rax
- 159:	49 0f af c7          	imul   %r15,%rax
- 15d:	41 89 4c 85 00       	mov    %ecx,0x0(%r13,%rax,4)
- 162:	83 c2 01             	add    $0x1,%edx
- 165:	39 f2                	cmp    %esi,%edx
- 167:	7e dc                	jle    145 <Levensthain+0xb7>
- 169:	b8 01 00 00 00       	mov    $0x1,%eax
- 16e:	8b 75 b8             	mov    -0x48(%rbp),%esi
- 171:	eb 19                	jmp    18c <Levensthain+0xfe>
- 173:	8d 50 ff             	lea    -0x1(%rax),%edx
- 176:	48 63 d2             	movslq %edx,%rdx
- 179:	41 8b 54 95 00       	mov    0x0(%r13,%rdx,4),%edx
- 17e:	83 c2 01             	add    $0x1,%edx
- 181:	48 63 c8             	movslq %eax,%rcx
- 184:	41 89 54 8d 00       	mov    %edx,0x0(%r13,%rcx,4)
- 189:	83 c0 01             	add    $0x1,%eax
- 18c:	39 f0                	cmp    %esi,%eax
- 18e:	7e e3                	jle    173 <Levensthain+0xe5>
- 190:	b8 01 00 00 00       	mov    $0x1,%eax
- 195:	4c 89 7d b0          	mov    %r15,-0x50(%rbp)
- 199:	41 89 c7             	mov    %eax,%r15d
- 19c:	eb 79                	jmp    217 <Levensthain+0x189>
- 19e:	41 8d 47 ff          	lea    -0x1(%r15),%eax
- 1a2:	41 8d 4e ff          	lea    -0x1(%r14),%ecx
- 1a6:	48 63 c9             	movslq %ecx,%rcx
- 1a9:	48 98                	cltq   
- 1ab:	48 8b 7d b0          	mov    -0x50(%rbp),%rdi
- 1af:	48 0f af c7          	imul   %rdi,%rax
- 1b3:	4c 8d 04 01          	lea    (%rcx,%rax,1),%r8
- 1b7:	4d 63 e6             	movslq %r14d,%r12
- 1ba:	49 63 df             	movslq %r15d,%rbx
- 1bd:	48 8b 75 a8          	mov    -0x58(%rbp),%rsi
- 1c1:	48 8b 55 a0          	mov    -0x60(%rbp),%rdx
- 1c5:	0f b6 54 1a ff       	movzbl -0x1(%rdx,%rbx,1),%edx
- 1ca:	42 38 54 26 ff       	cmp    %dl,-0x1(%rsi,%r12,1)
- 1cf:	0f 95 c2             	setne  %dl
- 1d2:	0f b6 d2             	movzbl %dl,%edx
- 1d5:	48 0f af df          	imul   %rdi,%rbx
- 1d9:	48 01 d9             	add    %rbx,%rcx
- 1dc:	41 8b 74 8d 00       	mov    0x0(%r13,%rcx,4),%esi
- 1e1:	4c 01 e0             	add    %r12,%rax
- 1e4:	41 8b 7c 85 00       	mov    0x0(%r13,%rax,4),%edi
- 1e9:	43 03 54 85 00       	add    0x0(%r13,%r8,4),%edx
- 1ee:	83 c6 01             	add    $0x1,%esi
- 1f1:	83 c7 01             	add    $0x1,%edi
- 1f4:	e8 00 00 00 00       	callq  1f9 <Levensthain+0x16b>
- 1f9:	4c 01 e3             	add    %r12,%rbx
- 1fc:	41 89 44 9d 00       	mov    %eax,0x0(%r13,%rbx,4)
- 201:	41 83 c6 01          	add    $0x1,%r14d
- 205:	eb 06                	jmp    20d <Levensthain+0x17f>
- 207:	41 be 01 00 00 00    	mov    $0x1,%r14d
- 20d:	44 3b 75 bc          	cmp    -0x44(%rbp),%r14d
- 211:	7e 8b                	jle    19e <Levensthain+0x110>
- 213:	41 83 c7 01          	add    $0x1,%r15d
- 217:	44 3b 7d bc          	cmp    -0x44(%rbp),%r15d
- 21b:	7e ea                	jle    207 <Levensthain+0x179>
- 21d:	4c 8b 7d b0          	mov    -0x50(%rbp),%r15
- 221:	41 bc 00 00 00 00    	mov    $0x0,%r12d
- 227:	44 8b 75 bc          	mov    -0x44(%rbp),%r14d
- 22b:	eb 43                	jmp    270 <Levensthain+0x1e2>
- 22d:	48 63 d3             	movslq %ebx,%rdx
- 230:	49 63 c4             	movslq %r12d,%rax
- 233:	49 0f af c7          	imul   %r15,%rax
- 237:	48 01 d0             	add    %rdx,%rax
- 23a:	41 8b 54 85 00       	mov    0x0(%r13,%rax,4),%edx
- 23f:	be 00 00 00 00       	mov    $0x0,%esi
- 244:	bf 01 00 00 00       	mov    $0x1,%edi
- 249:	b8 00 00 00 00       	mov    $0x0,%eax
- 24e:	e8 00 00 00 00       	callq  253 <Levensthain+0x1c5>
- 253:	83 c3 01             	add    $0x1,%ebx
- 256:	eb 05                	jmp    25d <Levensthain+0x1cf>
- 258:	bb 00 00 00 00       	mov    $0x0,%ebx
- 25d:	44 39 f3             	cmp    %r14d,%ebx
- 260:	7c cb                	jl     22d <Levensthain+0x19f>
- 262:	bf 0a 00 00 00       	mov    $0xa,%edi
- 267:	e8 00 00 00 00       	callq  26c <Levensthain+0x1de>
- 26c:	41 83 c4 01          	add    $0x1,%r12d
- 270:	44 3b 65 b8          	cmp    -0x48(%rbp),%r12d
- 274:	7c e2                	jl     258 <Levensthain+0x1ca>
- 276:	4c 8b 75 90          	mov    -0x70(%rbp),%r14
- 27a:	44 89 f1             	mov    %r14d,%ecx
- 27d:	48 8b 5d 98          	mov    -0x68(%rbp),%rbx
- 281:	89 da                	mov    %ebx,%edx
- 283:	be 00 00 00 00       	mov    $0x0,%esi
- 288:	bf 01 00 00 00       	mov    $0x1,%edi
- 28d:	b8 00 00 00 00       	mov    $0x0,%eax
- 292:	e8 00 00 00 00       	callq  297 <Levensthain+0x209>
- 297:	48 63 d3             	movslq %ebx,%rdx
- 29a:	49 63 c6             	movslq %r14d,%rax
- 29d:	4c 0f af f8          	imul   %rax,%r15
- 2a1:	4a 8d 04 3a          	lea    (%rdx,%r15,1),%rax
- 2a5:	48 8b 4d 88          	mov    -0x78(%rbp),%rcx
- 2a9:	8b 04 81             	mov    (%rcx,%rax,4),%eax
- 2ac:	48 8b 4d c8          	mov    -0x38(%rbp),%rcx
- 2b0:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+ 13e:	ba 01 00 00 00       	mov    $0x1,%edx # stores 1 into edx
+ 143:	eb 20                	jmp    165 <Levensthain+0xd7> #unconditional jump to line 165
+ 145:	8d 42 ff             	lea    -0x1(%rdx),%eax #loads memeory address of rdx+-1 into eax 
+ 148:	48 98                	cltq   #sign extends to quadword 
+ 14a:	49 0f af c7          	imul   %r15,%rax #multiplies r15 by rax and stores value into rax
+ 14e:	41 8b 4c 85 00       	mov    0x0(%r13,%rax,4),%ecx move value of r13+0 +(rax*4) into ecx
+ 153:	83 c1 01             	add    $0x1,%ecx #add one to ecx 
+ 156:	48 63 c2             	movslq %edx,%rax #move edx into rax 
+ 159:	49 0f af c7          	imul   %r15,%rax #multiply r15 and rax and store value in rax
+ 15d:	41 89 4c 85 00       	mov    %ecx,0x0(%r13,%rax,4) #move value of ecx into r13+0 + rax*4
+ 162:	83 c2 01             	add    $0x1,%edx # add one to edx
+ 165:	39 f2                	cmp    %esi,%edx # compare esi and edx 
+ 167:	7e dc                	jle    145 <Levensthain+0xb7> #if esi is less than edx jump to line 145
+ 169:	b8 01 00 00 00       	mov    $0x1,%eax # move 1 into eax 
+ 16e:	8b 75 b8             	mov    -0x48(%rbp),%esi # move value of stack pointer offset by -72
+ 171:	eb 19                	jmp    18c <Levensthain+0xfe> #jump unconditionally to line 18c 
+ 173:	8d 50 ff             	lea    -0x1(%rax),%edx # loads effective address of rax+-1 into edx 
+ 176:	48 63 d2             	movslq %edx,%rdx #move edx into quadword reg rdx 
+ 179:	41 8b 54 95 00       	mov    0x0(%r13,%rdx,4),%edx #move (r13+0) + (rdx*4) into edx
+ 17e:	83 c2 01             	add    $0x1,%edx #add 1 to edx 
+ 181:	48 63 c8             	movslq %eax,%rcx #move value of eax into rcx 
+ 184:	41 89 54 8d 00       	mov    %edx,0x0(%r13,%rcx,4) # move edx into 
+ 189:	83 c0 01             	add    $0x1,%eax #add one to eax 
+ 18c:	39 f0                	cmp    %esi,%eax #compare esi to eax 
+ 18e:	7e e3                	jle    173 <Levensthain+0xe5> #jump to line 173 if less than
+ 190:	b8 01 00 00 00       	mov    $0x1,%eax #move one into eax
+ 195:	4c 89 7d b0          	mov    %r15,-0x50(%rbp) #move contents of r15 into base pointer offset by 80
+ 199:	41 89 c7             	mov    %eax,%r15d #move eax into r15d 
+ 19c:	eb 79                	jmp    217 <Levensthain+0x189> #jump unconditionally to 217
+ 19e:	41 8d 47 ff          	lea    -0x1(%r15),%eax #load effective instruction of r15+-1 into eax
+ 1a2:	41 8d 4e ff          	lea    -0x1(%r14),%ecx #load effective instruction of r14+-1 into ecx
+ 1a6:	48 63 c9             	movslq %ecx,%rcx #move ecx into rcx
+ 1a9:	48 98                	 #sign extended to quadword   
+ 1ab:	48 8b 7d b0          	mov    -0x50(%rbp),%rdi #move basepointer offset by -80 into rdi
+ 1af:	48 0f af c7          	imul   %rdi,%rax #multiply rdi by rax and store into rax
+ 1b3:	4c 8d 04 01          	lea    (%rcx,%rax,1),%r8 #load address of (rcx+rax*1) into r8
+ 1b7:	4d 63 e6             	movslq %r14d,%r12 #move r14d into r12
+ 1ba:	49 63 df             	movslq %r15d,%rbx #move r15d into rbx 
+ 1bd:	48 8b 75 a8          	mov    -0x58(%rbp),%rsi #move basepointer offset by -88 into rsi
+ 1c1:	48 8b 55 a0          	mov    -0x60(%rbp),%rdx #move basepointer offset by -88 into rdx
+ 1c5:	0f b6 54 1a ff       	movzbl -0x1(%rdx,%rbx,1),%edx #move (rdx+-1) + (rbx*1) into edx
+ 1ca:	42 38 54 26 ff       	cmp    %dl,-0x1(%rsi,%r12,1) #compare dl with (-1 + rsi)+(r12*1)
+ 1cf:	0f 95 c2             	setne  %dl #set flags of reg dl
+ 1d2:	0f b6 d2             	movzbl %dl,%edx  #move dl into edx 
+ 1d5:	48 0f af df          	imul   %rdi,%rbx #multiply rdi by rbx and store into rbx
+ 1d9:	48 01 d9             	add    %rbx,%rcx #add rbx into rcx and store into rcx 
+ 1dc:	41 8b 74 8d 00       	mov    0x0(%r13,%rcx,4),%esi #move (0+r13) + (rcx*4)
+ 1e1:	4c 01 e0             	add    %r12,%rax #add r12 into rax 
+ 1e4:	41 8b 7c 85 00       	mov    0x0(%r13,%rax,4),%edi #move value of (r13+0) + (rax*4) into edi
+ 1e9:	43 03 54 85 00       	add    0x0(%r13,%r8,4),%edx  #move value of (r13+0) + (r8*4) into edi
+ 1ee:	83 c6 01             	add    $0x1,%esi #add 1 into esi 
+ 1f1:	83 c7 01             	add    $0x1,%edi #add 1 into edi 
+ 1f4:	e8 00 00 00 00       	callq  1f9 <Levensthain+0x16b> #call function 
+ 1f9:	4c 01 e3             	add    %r12,%rbx #add r12 into rbx 
+ 1fc:	41 89 44 9d 00       	mov    %eax,0x0(%r13,%rbx,4) #move value of (r13+0) + (rbx*4) into edi
+ 201:	41 83 c6 01          	add    $0x1,%r14d #add 1 into r14d
+ 205:	eb 06                	jmp    20d <Levensthain+0x17f> #unconditional jump to line 20d
+ 207:	41 be 01 00 00 00    	mov    $0x1,%r14d #move 1 into r14d 
+ 20d:	44 3b 75 bc          	cmp    -0x44(%rbp),%r14d #compare value of base pointer offset by -68 and contents of r14d
+ 211:	7e 8b                	jle    19e <Levensthain+0x110> # r14d is less than then jump to line 19e
+ 213:	41 83 c7 01          	add    $0x1,%r15d #add 1 into r15d 
+ 217:	44 3b 7d bc          	cmp    -0x44(%rbp),%r15d #compare value of base pointer offset by -68 and contents of r15d
+ 21b:	7e ea                	jle    207 <Levensthain+0x179> #jump if less than to line 207
+ 21d:	4c 8b 7d b0          	mov    -0x50(%rbp),%r15 #move basepointer offset by -80 int r15
+ 221:	41 bc 00 00 00 00    	mov    $0x0,%r12d #move 0 into r12d 
+ 227:	44 8b 75 bc          	mov    -0x44(%rbp),%r14d #move stackpointer offset by -68 into r14d
+ 22b:	eb 43                	jmp    270 <Levensthain+0x1e2> #fucntion call
+ 22d:	48 63 d3             	movslq %ebx,%rdx #move contents of ebx into rdx 
+ 230:	49 63 c4             	movslq %r12d,%rax #move contents of r12d into rax 
+ 233:	49 0f af c7          	imul   %r15,%rax #multiply r15 by rax and store in rax 
+ 237:	48 01 d0             	add    %rdx,%rax # add rdx into rax 
+ 23a:	41 8b 54 85 00       	mov    0x0(%r13,%rax,4),%edx #move value of (r13+0) + (rax*4) into edx
+ 23f:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi 
+ 244:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi 
+ 249:	b8 00 00 00 00       	mov    $0x0,%eax # move 0 into eax 
+ 24e:	e8 00 00 00 00       	callq  253 <Levensthain+0x1c5> #function call 
+ 253:	83 c3 01             	add    $0x1,%ebx #add 1 into ebx 
+ 256:	eb 05                	jmp    25d <Levensthain+0x1cf> #unconditional jump to line 25d
+ 258:	bb 00 00 00 00       	mov    $0x0,%ebx #load 0 into ebx 
+ 25d:	44 39 f3             	cmp    %r14d,%ebx #compare r14d and ebx 
+ 260:	7c cb                	jl     22d <Levensthain+0x19f> #if less than then jump to line 22d 
+ 262:	bf 0a 00 00 00       	mov    $0xa,%edi #move 10 into edi 
+ 267:	e8 00 00 00 00       	callq  26c <Levensthain+0x1de> #function call 
+ 26c:	41 83 c4 01          	add    $0x1,%r12d #add 1 into r12d 
+ 270:	44 3b 65 b8          	cmp    -0x48(%rbp),%r12d #compare value of stackpointer offset by -72 with r12d 
+ 274:	7c e2                	jl     258 <Levensthain+0x1ca> #if less than then jump to line 258
+ 276:	4c 8b 75 90          	mov    -0x70(%rbp),%r14 #move value of base pointer offset by -112 into r14
+ 27a:	44 89 f1             	mov    %r14d,%ecx #move r14d into ecx 
+ 27d:	48 8b 5d 98          	mov    -0x68(%rbp),%rbx #move basepointer offset by -104
+ 281:	89 da                	mov    %ebx,%edx #move ebx into edx 
+ 283:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi
+ 288:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi
+ 28d:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+ 292:	e8 00 00 00 00       	callq  297 <Levensthain+0x209> #function call (proabaly printf)
+ 297:	48 63 d3             	movslq %ebx,%rdx #move ebx into rdx 
+ 29a:	49 63 c6             	movslq %r14d,%rax #move r14d into rax 
+ 29d:	4c 0f af f8          	imul   %rax,%r15 #multiply rax into and by r15
+ 2a1:	4a 8d 04 3a          	lea    (%rdx,%r15,1),%rax #load effective address of rdx +r15 *1
+ 2a5:	48 8b 4d 88          	mov    -0x78(%rbp),%rcx #load base pointer offset by -120 into rcx 
+ 2a9:	8b 04 81             	mov    (%rcx,%rax,4),%eax move (rcx + rax )*4 into eax 
+ 2ac:	48 8b 4d c8          	mov    -0x38(%rbp),%rcx move  base pointer offset by -56 into rcx 
+ 2b0:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx mask rcx 
  2b7:	00 00 
- 2b9:	74 05                	je     2c0 <Levensthain+0x232>
- 2bb:	e8 00 00 00 00       	callq  2c0 <Levensthain+0x232>
- 2c0:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+ 2b9:	74 05                	je     2c0 <Levensthain+0x232> #if equal jump to line 2c0
+ 2bb:	e8 00 00 00 00       	callq  2c0 <Levensthain+0x232> #function call
+ 2c0:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp #load effective address of base pointer offset by 40 into rsp 
  2c4:	5b                   	pop    %rbx
  2c5:	41 5c                	pop    %r12
  2c7:	41 5d                	pop    %r13
  2c9:	41 5e                	pop    %r14
  2cb:	41 5f                	pop    %r15
- 2cd:	5d                   	pop    %rbp
- 2ce:	c3                   	retq   
+ 2cd:	5d                   	pop    %rbp #^^^ ending function calls to restore reg values 
+ 2ce:	c3                   	retq   #return 
 
 00000000000002cf <main>:
- 2cf:	48 83 ec 08          	sub    $0x8,%rsp
- 2d3:	be 00 00 00 00       	mov    $0x0,%esi
- 2d8:	bf 00 00 00 00       	mov    $0x0,%edi
- 2dd:	e8 00 00 00 00       	callq  2e2 <main+0x13>
- 2e2:	41 89 c0             	mov    %eax,%r8d
- 2e5:	b9 00 00 00 00       	mov    $0x0,%ecx
- 2ea:	ba 00 00 00 00       	mov    $0x0,%edx
- 2ef:	be 00 00 00 00       	mov    $0x0,%esi
- 2f4:	bf 01 00 00 00       	mov    $0x1,%edi
- 2f9:	b8 00 00 00 00       	mov    $0x0,%eax
- 2fe:	e8 00 00 00 00       	callq  303 <main+0x34>
- 303:	b8 00 00 00 00       	mov    $0x0,%eax
- 308:	48 83 c4 08          	add    $0x8,%rsp
- 30c:	c3                   	retq   
+ 2cf:	48 83 ec 08          	sub    $0x8,%rsp #subtract 8 from the stack pointer 
+ 2d3:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi 
+ 2d8:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi 
+ 2dd:	e8 00 00 00 00       	callq  2e2 <main+0x13> #fucntion call ( printf most likly )
+ 2e2:	41 89 c0             	mov    %eax,%r8d #move eax into r8d 
+ 2e5:	b9 00 00 00 00       	mov    $0x0,%ecx #move 0 into ecx 
+ 2ea:	ba 00 00 00 00       	mov    $0x0,%edx #move 0 into edx 
+ 2ef:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi 
+ 2f4:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi 
+ 2f9:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+ 2fe:	e8 00 00 00 00       	callq  303 <main+0x34> # function call (printf)
+ 303:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+ 308:	48 83 c4 08          	add    $0x8,%rsp #resotore stack pointer 
+ 30c:	c3                   	retq   #return

@@ -12,7 +12,7 @@ Disassembly of section .text:
    a:	41 c1 e9 1f          	shr    $0x1f,%r9d #shift contents of 0x1f to the right by whats in %r9d (/2)
    e:	44 01 c8             	add    %r9d,%eax #add whats in %eax into %r9d 
   11:	d1 f8                	sar    %eax # shift right (/2) code is (low+high)/2
-  13:	4c 63 c8             	movslq %eax,%r9 #move whats in r9 into eax. eax = mid
+  13:	4c 63 c8             	movslq %eax,%r9 #move eax into r9
   16:	47 8b 0c 88          	mov    (%r8,%r9,4),%r9d # arr[mid] 
   1a:	41 39 c9             	cmp    %ecx,%r9d #key == arr[mid]
   1d:	74 27                	je     46 <binarySearch+0x46> #jump to 46 if equal
@@ -34,8 +34,8 @@ Disassembly of section .text:
   48:	48 83 ec 38          	sub    $0x38,%rsp
   4c:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
   53:	00 00 
-  55:	48 89 44 24 28       	mov    %rax,0x28(%rsp) #offsetting stack pointer by 40 (ie: 10 bytes worth)
-  5a:	31 c0                	xor    %eax,%eax
+  55:	48 89 44 24 28       	mov    %rax,0x28(%rsp) # move rax into stack pointer off set by 40 
+  5a:	31 c0                	xor    %eax,%eax #clear eax register 
   5c:	c7 04 24 01 00 00 00 	movl   $0x1,(%rsp) #waldo array elements will be stored in stack waldo[0] = 1 
   63:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%rsp) #waldo[1] = 2
   6a:	00 

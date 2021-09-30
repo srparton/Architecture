@@ -183,4 +183,4 @@ crtAsmwhile	:	whileAsm
 	objdump -d while.o >> ../Assembly/while/while.txt
 
 clean :
-	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input smallest Assignment1 construct3 .*sw* a.out
+	rm -rf *.o binarySearch doWhile while struct variables 1dArray pointer input smallest Assignment1 construct3 elseIfElse.*sw* a.out

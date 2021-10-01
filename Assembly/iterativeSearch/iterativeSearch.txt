@@ -5,7 +5,7 @@ iterativeSearch.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	48 83 ec 38          	sub    $0x38,%rsp
+   0:	48 83 ec 38          	sub    $0x38,%rsp #check
    4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
    b:	00 00 
    d:	48 89 44 24 28       	mov    %rax,0x28(%rsp)

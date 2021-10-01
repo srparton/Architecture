@@ -1,0 +1,23 @@
+
+iPlusEquOne.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+   b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+   f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  13:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  17:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  1b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  1f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  23:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  27:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  2b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  2f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  33:	b8 00 00 00 00       	mov    $0x0,%eax
+  38:	5d                   	pop    %rbp
+  39:	c3                   	retq   

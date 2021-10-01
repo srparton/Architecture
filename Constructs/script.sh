@@ -8,8 +8,8 @@
 FILE="$1"
 #if [-d ./Assembly/$FILE]
 #then
-    gcc -c $FILE.c
-    #gcc -Og -c Constructs/$FILE.c
+    # gcc -c $FILE.c
+    gcc -Og -c $FILE.c
 	objdump -d $FILE.o >> ../Assembly/$FILE/$FILE.txt
 #else
 #    echo "folder does not exist"

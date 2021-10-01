@@ -6,68 +6,68 @@ Disassembly of section .text:
 
 0000000000000000 <main>:
    0:	55                   	push   %rbp
-   1:	53                   	push   %rbx
-   2:	48 81 ec a8 01 00 00 	sub    $0x1a8,%rsp
-   9:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+   1:	53                   	push   %rbx #set stack pointer 
+   2:	48 81 ec a8 01 00 00 	sub    $0x1a8,%rsp #subtract 0x1a8 from stack pointer
+   9:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax #move into rax
   10:	00 00 
-  12:	48 89 84 24 98 01 00 	mov    %rax,0x198(%rsp)
+  12:	48 89 84 24 98 01 00 	mov    %rax,0x198(%rsp) #move rax into stack pointer offset by 0x198
   19:	00 
-  1a:	31 c0                	xor    %eax,%eax
-  1c:	bf 00 00 00 00       	mov    $0x0,%edi
-  21:	eb 2c                	jmp    4f <main+0x4f>
-  23:	44 8d 44 07 01       	lea    0x1(%rdi,%rax,1),%r8d
-  28:	48 63 d0             	movslq %eax,%rdx
-  2b:	48 63 cf             	movslq %edi,%rcx
-  2e:	48 8d 34 89          	lea    (%rcx,%rcx,4),%rsi
-  32:	48 8d 0c 36          	lea    (%rsi,%rsi,1),%rcx
-  36:	48 01 ca             	add    %rcx,%rdx
-  39:	44 89 04 94          	mov    %r8d,(%rsp,%rdx,4)
-  3d:	83 c0 01             	add    $0x1,%eax
-  40:	eb 05                	jmp    47 <main+0x47>
-  42:	b8 00 00 00 00       	mov    $0x0,%eax
-  47:	83 f8 09             	cmp    $0x9,%eax
-  4a:	7e d7                	jle    23 <main+0x23>
-  4c:	83 c7 01             	add    $0x1,%edi
-  4f:	83 ff 09             	cmp    $0x9,%edi
-  52:	7e ee                	jle    42 <main+0x42>
-  54:	bd 00 00 00 00       	mov    $0x0,%ebp
-  59:	eb 5f                	jmp    ba <main+0xba>
-  5b:	48 63 c3             	movslq %ebx,%rax
-  5e:	48 63 d5             	movslq %ebp,%rdx
-  61:	48 8d 0c 92          	lea    (%rdx,%rdx,4),%rcx
-  65:	48 8d 14 09          	lea    (%rcx,%rcx,1),%rdx
-  69:	48 01 d0             	add    %rdx,%rax
-  6c:	8b 14 84             	mov    (%rsp,%rax,4),%edx
-  6f:	83 fa 09             	cmp    $0x9,%edx
-  72:	7f 16                	jg     8a <main+0x8a>
-  74:	be 00 00 00 00       	mov    $0x0,%esi
-  79:	bf 01 00 00 00       	mov    $0x1,%edi
-  7e:	b8 00 00 00 00       	mov    $0x0,%eax
-  83:	e8 00 00 00 00       	callq  88 <main+0x88>
-  88:	eb 14                	jmp    9e <main+0x9e>
-  8a:	be 00 00 00 00       	mov    $0x0,%esi
-  8f:	bf 01 00 00 00       	mov    $0x1,%edi
-  94:	b8 00 00 00 00       	mov    $0x0,%eax
-  99:	e8 00 00 00 00       	callq  9e <main+0x9e>
-  9e:	83 c3 01             	add    $0x1,%ebx
-  a1:	eb 05                	jmp    a8 <main+0xa8>
-  a3:	bb 00 00 00 00       	mov    $0x0,%ebx
-  a8:	83 fb 09             	cmp    $0x9,%ebx
-  ab:	7e ae                	jle    5b <main+0x5b>
-  ad:	bf 0a 00 00 00       	mov    $0xa,%edi
-  b2:	e8 00 00 00 00       	callq  b7 <main+0xb7>
-  b7:	83 c5 01             	add    $0x1,%ebp
-  ba:	83 fd 09             	cmp    $0x9,%ebp
-  bd:	7e e4                	jle    a3 <main+0xa3>
-  bf:	b8 00 00 00 00       	mov    $0x0,%eax
-  c4:	48 8b 9c 24 98 01 00 	mov    0x198(%rsp),%rbx
+  1a:	31 c0                	xor    %eax,%eax #clear eax
+  1c:	bf 00 00 00 00       	mov    $0x0,%edi #mov 0 into edi 
+  21:	eb 2c                	jmp    4f <main+0x4f> #jump uncondtionally to line 4f 
+  23:	44 8d 44 07 01       	lea    0x1(%rdi,%rax,1),%r8d #load effective address of rdi + 1 + (rax * 1)
+  28:	48 63 d0             	movslq %eax,%rdx  #move eax into rdx 
+  2b:	48 63 cf             	movslq %edi,%rcx #move edi into rcx 
+  2e:	48 8d 34 89          	lea    (%rcx,%rcx,4),%rsi #load effective addres of rcs + (rcx * 4)
+  32:	48 8d 0c 36          	lea    (%rsi,%rsi,1),%rcx #load effective address of rsi + rsi * 1 into rcx
+  36:	48 01 ca             	add    %rcx,%rdx #add rcx into rdx 
+  39:	44 89 04 94          	mov    %r8d,(%rsp,%rdx,4) #move r8d into (rsp + rdx * 4)
+  3d:	83 c0 01             	add    $0x1,%eax #add 1 into eax 
+  40:	eb 05                	jmp    47 <main+0x47> #jump uncondtionally to line 47
+  42:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+  47:	83 f8 09             	cmp    $0x9,%eax #compare 9 with 0 ( eax )
+  4a:	7e d7                	jle    23 <main+0x23> #if less than or equal to then jump to line 23
+  4c:	83 c7 01             	add    $0x1,%edi #add one to edi 
+  4f:	83 ff 09             	cmp    $0x9,%edi #compare 0 with edi (col < 10)
+  52:	7e ee                	jle    42 <main+0x42> #jump if equal to line 42
+  54:	bd 00 00 00 00       	mov    $0x0,%ebp # move 0 into ebp 
+  59:	eb 5f                	jmp    ba <main+0xba> #jump to line ba uncondtionally
+  5b:	48 63 c3             	movslq %ebx,%rax #move ebx into rax 
+  5e:	48 63 d5             	movslq %ebp,%rdx #move ebp into rdx 
+  61:	48 8d 0c 92          	lea    (%rdx,%rdx,4),%rcx #load effective address of rdx + rdx*4 into rcx 
+  65:	48 8d 14 09          	lea    (%rcx,%rcx,1),%rdx #load effective address of rcx + rcx*1 into rdx
+  69:	48 01 d0             	add    %rdx,%rax #add rdx into rax 
+  6c:	8b 14 84             	mov    (%rsp,%rax,4),%edx # move stack pointer + rax * 4 int edx 
+  6f:	83 fa 09             	cmp    $0x9,%edx #compare 9 with edx 
+  72:	7f 16                	jg     8a <main+0x8a> # jump if greater than to line 8a
+  74:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi 
+  79:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi 
+  7e:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+  83:	e8 00 00 00 00       	callq  88 <main+0x88> #printf 
+  88:	eb 14                	jmp    9e <main+0x9e> #jump uncondtionally to 9e
+  8a:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi 
+  8f:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi 
+  94:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+  99:	e8 00 00 00 00       	callq  9e <main+0x9e> #printf 
+  9e:	83 c3 01             	add    $0x1,%ebx #add 1 to ebx 
+  a1:	eb 05                	jmp    a8 <main+0xa8> #jump uncondtionally to line a8
+  a3:	bb 00 00 00 00       	mov    $0x0,%ebx #move 0 into ebx 
+  a8:	83 fb 09             	cmp    $0x9,%ebx #compare 0 with 9
+  ab:	7e ae                	jle    5b <main+0x5b> #jump if less than or equal to to line 5b
+  ad:	bf 0a 00 00 00       	mov    $0xa,%edi 3move 10 into edi 
+  b2:	e8 00 00 00 00       	callq  b7 <main+0xb7> #printf 
+  b7:	83 c5 01             	add    $0x1,%ebp #add 1 into ebp 
+  ba:	83 fd 09             	cmp    $0x9,%ebp #compare 9 with 1 (ebp)
+  bd:	7e e4                	jle    a3 <main+0xa3> #jump if less than or equal 
+  bf:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax 
+  c4:	48 8b 9c 24 98 01 00 	mov    0x198(%rsp),%rbx #move stack pointer offset by 0x198 into rbx 
   cb:	00 
-  cc:	64 48 33 1c 25 28 00 	xor    %fs:0x28,%rbx
+  cc:	64 48 33 1c 25 28 00 	xor    %fs:0x28,%rbx #clear rbx 
   d3:	00 00 
-  d5:	74 05                	je     dc <main+0xdc>
-  d7:	e8 00 00 00 00       	callq  dc <main+0xdc>
-  dc:	48 81 c4 a8 01 00 00 	add    $0x1a8,%rsp
-  e3:	5b                   	pop    %rbx
-  e4:	5d                   	pop    %rbp
-  e5:	c3                   	retq   
+  d5:	74 05                	je     dc <main+0xdc> #jump if equal 
+  d7:	e8 00 00 00 00       	callq  dc <main+0xdc> #printf
+  dc:	48 81 c4 a8 01 00 00 	add    $0x1a8,%rsp #reset stack pointer 
+  e3:	5b                   	pop    %rbx #return value to rbx 
+  e4:	5d                   	pop    %rbp #return value to rbp 
+  e5:	c3                   	retq   #return 
 

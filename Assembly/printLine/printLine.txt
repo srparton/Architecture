@@ -6,20 +6,20 @@ Disassembly of section .text:
 
 0000000000000000 <main>:
    0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	48 83 ec 10          	sub    $0x10,%rsp
-   8:	c7 45 f8 0a 00 00 00 	movl   $0xa,-0x8(%rbp)
-   f:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
-  16:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  19:	89 c6                	mov    %eax,%esi
-  1b:	bf 00 00 00 00       	mov    $0x0,%edi
-  20:	b8 00 00 00 00       	mov    $0x0,%eax
-  25:	e8 00 00 00 00       	callq  2a <main+0x2a>
-  2a:	8b 45 f8             	mov    -0x8(%rbp),%eax
-  2d:	89 c6                	mov    %eax,%esi
-  2f:	bf 00 00 00 00       	mov    $0x0,%edi
-  34:	b8 00 00 00 00       	mov    $0x0,%eax
-  39:	e8 00 00 00 00       	callq  3e <main+0x3e>
-  3e:	b8 00 00 00 00       	mov    $0x0,%eax
-  43:	c9                   	leaveq 
-  44:	c3                   	retq   
+   1:	48 89 e5             	mov    %rsp,%rbp #set stack pointer
+   4:	48 83 ec 10          	sub    $0x10,%rsp #subtrack 10 from stack pointer 
+   8:	c7 45 f8 0a 00 00 00 	movl   $0xa,-0x8(%rbp) #move 10 into base pointer offset by -0x8 (i = 10)
+   f:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp) #move 1 into base pointer offset by -0x4 (j = 1)
+  16:	8b 45 fc             	mov    -0x4(%rbp),%eax #move j into eax
+  19:	89 c6                	mov    %eax,%esi #move j into esi (preparing for funtion call)
+  1b:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  20:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  25:	e8 00 00 00 00       	callq  2a <main+0x2a> #call printf
+  2a:	8b 45 f8             	mov    -0x8(%rbp),%eax #move i into eax
+  2d:	89 c6                	mov    %eax,%esi #move i into esi 
+  2f:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  34:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  39:	e8 00 00 00 00       	callq  3e <main+0x3e> #call printf 
+  3e:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax for return call
+  43:	c9                   	leaveq  
+  44:	c3                   	retq    #return 

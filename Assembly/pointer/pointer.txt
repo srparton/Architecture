@@ -8,12 +8,12 @@ Disassembly of section .text:
    0:	48 83 ec 38          	sub    $0x38,%rsp
    4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
    b:	00 00 
-   d:	48 89 44 24 28       	mov    %rax,0x28(%rsp) #load into rax what is stored in stack pointer offset by 0x28
+   d:	48 89 44 24 28       	mov    %rax,0x28(%rsp) #move what is stored in rax into stack pointer offset by 0x28
   12:	31 c0                	xor    %eax,%eax #clear eax register
-  14:	66 c7 44 24 10 ff 7f 	movw   $0x7fff,0x10(%rsp) #move whats in stack pointer off set by 0x10
-  1b:	ba ff 7f 00 00       	mov    $0x7fff,%edx #move whats in edx into memory location 0x7fff
-  20:	be 00 00 00 00       	mov    $0x0,%esi #move esi into 0x0 memory location
-  25:	bf 01 00 00 00       	mov    $0x1,%edi #move edi into 0x1 memory locaiton 
+  14:	66 c7 44 24 10 ff 7f 	movw   $0x7fff,0x10(%rsp) #move 0x7fff into stack pointer off set by 0x10 
+  1b:	ba ff 7f 00 00       	mov    $0x7fff,%edx #move 0x7fff into edx 
+  20:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi
+  25:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi
   2a:	e8 00 00 00 00       	callq  2f <main+0x2f> #call printf  
   2f:	48 8d 54 24 10       	lea    0x10(%rsp),%rdx #load memory address of rdx into stack pointer offset by 16
   34:	be 00 00 00 00       	mov    $0x0,%esi #setting up for printf call 
@@ -25,13 +25,13 @@ Disassembly of section .text:
   52:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
   57:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
   5c:	e8 00 00 00 00       	callq  61 <main+0x61> #printf
-  61:	0f bf 54 24 10       	movswl 0x10(%rsp),%edx #load edx memory address into stackpointer offset by 16
+  61:	0f bf 54 24 10       	movswl 0x10(%rsp),%edx #load stackpointer offset by 16 into edx
   66:	be 00 00 00 00       	mov    $0x0,%esi #^^^
   6b:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
   70:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
   75:	e8 00 00 00 00       	callq  7a <main+0x7a> #printf
-  7a:	66 c7 44 24 12 ff ff 	movw   $0xffff,0x12(%rsp) #load memory address of stackpointer off set by 18
-  81:	ba ff ff 00 00       	mov    $0xffff,%edx #load into memory location 0xffff whats in edx
+  7a:	66 c7 44 24 12 ff ff 	movw   $0xffff,0x12(%rsp) #load 0xffff into stackpointer off set by 18
+  81:	ba ff ff 00 00       	mov    $0xffff,%edx #move 0xffff into edx
   86:	be 00 00 00 00       	mov    $0x0,%esi #preparing for printf call 
   8b:	bf 01 00 00 00       	mov    $0x1,%edi #^^^
   90:	b8 00 00 00 00       	mov    $0x0,%eax #^^^
@@ -97,7 +97,7 @@ Disassembly of section .text:
  1b6:	e8 00 00 00 00       	callq  1bb <main+0x1bb> #printf
  1bb:	48 ba ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rdx #move whats in rdx into memory location 0x7fffffffffffffff
  1c2:	ff ff 7f 
- 1c5:	48 89 54 24 20       	mov    %rdx,0x20(%rsp) #load into rdx whats in stackpointer offset by 32
+ 1c5:	48 89 54 24 20       	mov    %rdx,0x20(%rsp) #move rdx into stackpointer offset by 32
  1ca:	be 00 00 00 00       	mov    $0x0,%esi #prepare for function call 
  1cf:	bf 01 00 00 00       	mov    $0x1,%edi #^^^ 
  1d4:	b8 00 00 00 00       	mov    $0x0,%eax #^^^

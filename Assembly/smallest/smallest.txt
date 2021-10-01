@@ -14,7 +14,7 @@ Disassembly of section .text:
   18:	41 39 c8             	cmp    %ecx,%r8d #is smallestNum greater array[i]
   1b:	7e 05                	jle    22 <smallest+0x22> #^^^
   1d:	89 d0                	mov    %edx,%eax #smallestLoc = i 
-  1f:	41 89 c8             	mov    %ecx,%r8d #move array into %r8d
+  1f:	41 89 c8             	mov    %ecx,%r8d #move ecx into %r8d
   22:	83 c2 01             	add    $0x1,%edx #i++
   25:	39 f2                	cmp    %esi,%edx #while(i < size)
   27:	7c e9                	jl     12 <smallest+0x12> #if less than jump to assembly code line 12

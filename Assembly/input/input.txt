@@ -8,25 +8,25 @@ Disassembly of section .text:
    0:	48 83 ec 18          	sub    $0x18,%rsp
    4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax #setting stack pointer for function
    b:	00 00 
-   d:	48 89 44 24 08       	mov    %rax,0x8(%rsp) #passing in argument from stack into rax
+   d:	48 89 44 24 08       	mov    %rax,0x8(%rsp) #move rax into stack pointer offset by 0x8
   12:	31 c0                	xor    %eax,%eax #clear out eax
-  14:	be 00 00 00 00       	mov    $0x0,%esi #move into 0 contents of reg esi
-  19:	bf 01 00 00 00       	mov    $0x1,%edi #move into 1 contents of edi 
+  14:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi
+  19:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi
   1e:	e8 00 00 00 00       	callq  23 <main+0x23> #printf
   23:	48 8d 74 24 04       	lea    0x4(%rsp),%rsi #load memory address of stack pointer off set by 4 into rsi
-  28:	bf 00 00 00 00       	mov    $0x0,%edi #load contents of edi into 0
-  2d:	b8 00 00 00 00       	mov    $0x0,%eax #load contents of eax into 0
+  28:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  2d:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
   32:	e8 00 00 00 00       	callq  37 <main+0x37> #scanf
   37:	8b 54 24 04          	mov    0x4(%rsp),%edx #load contents of edx into stack pointer off set by 4 
-  3b:	be 00 00 00 00       	mov    $0x0,%esi #load esi into 0 memory location
-  40:	bf 01 00 00 00       	mov    $0x1,%edi #load edi contents into memory location 1
-  45:	b8 00 00 00 00       	mov    $0x0,%eax #load whats in eax into memory location 0
+  3b:	be 00 00 00 00       	mov    $0x0,%esi #move 0 into esi
+  40:	bf 01 00 00 00       	mov    $0x1,%edi #move 1 into edi
+  45:	b8 00 00 00 00       	mov    $0x0,%eax #0 into eax 
   4a:	e8 00 00 00 00       	callq  4f <main+0x4f> #printf2
   4f:	48 8b 4c 24 08       	mov    0x8(%rsp),%rcx #prepare for returning. Resetting stack pointer
   54:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
   5b:	00 00 
   5d:	74 05                	je     64 <main+0x64> #return 
   5f:	e8 00 00 00 00       	callq  64 <main+0x64>
-  64:	b8 00 00 00 00       	mov    $0x0,%eax
-  69:	48 83 c4 18          	add    $0x18,%rsp
-  6d:	c3                   	retq   
+  64:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax for return
+  69:	48 83 c4 18          	add    $0x18,%rsp #reset stack pointer
+  6d:	c3                   	retq    #return

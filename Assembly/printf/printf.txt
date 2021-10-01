@@ -6,26 +6,26 @@ Disassembly of section .text:
 
 0000000000000000 <main>:
    0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	48 83 ec 10          	sub    $0x10,%rsp
-   8:	c7 45 f8 0a 00 00 00 	movl   $0xa,-0x8(%rbp)
-   f:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
-  16:	8b 55 fc             	mov    -0x4(%rbp),%edx
-  19:	8b 45 f8             	mov    -0x8(%rbp),%eax
-  1c:	89 c6                	mov    %eax,%esi
-  1e:	bf 00 00 00 00       	mov    $0x0,%edi
-  23:	b8 00 00 00 00       	mov    $0x0,%eax
-  28:	e8 00 00 00 00       	callq  2d <main+0x2d>
-  2d:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  30:	89 c6                	mov    %eax,%esi
-  32:	bf 00 00 00 00       	mov    $0x0,%edi
-  37:	b8 00 00 00 00       	mov    $0x0,%eax
-  3c:	e8 00 00 00 00       	callq  41 <main+0x41>
-  41:	8b 45 f8             	mov    -0x8(%rbp),%eax
-  44:	89 c6                	mov    %eax,%esi
-  46:	bf 00 00 00 00       	mov    $0x0,%edi
-  4b:	b8 00 00 00 00       	mov    $0x0,%eax
-  50:	e8 00 00 00 00       	callq  55 <main+0x55>
-  55:	b8 00 00 00 00       	mov    $0x0,%eax
+   1:	48 89 e5             	mov    %rsp,%rbp #set stack pointer
+   4:	48 83 ec 10          	sub    $0x10,%rsp #subtrack 10 from stack pointer
+   8:	c7 45 f8 0a 00 00 00 	movl   $0xa,-0x8(%rbp) #move 10 into basepointer offset by -0x8 (i = 10)
+   f:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp) #move 1 into basepointer offset by -0x4 (j = 1)
+  16:	8b 55 fc             	mov    -0x4(%rbp),%edx #move j into edb
+  19:	8b 45 f8             	mov    -0x8(%rbp),%eax #move i into eax
+  1c:	89 c6                	mov    %eax,%esi #move i into esi (preparing for printf call)
+  1e:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi 
+  23:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  28:	e8 00 00 00 00       	callq  2d <main+0x2d> #call prinf
+  2d:	8b 45 fc             	mov    -0x4(%rbp),%eax #move j into eax
+  30:	89 c6                	mov    %eax,%esi #move j into esi (preparing for printf call)
+  32:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  37:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  3c:	e8 00 00 00 00       	callq  41 <main+0x41> #call printf
+  41:	8b 45 f8             	mov    -0x8(%rbp),%eax #move i into eax
+  44:	89 c6                	mov    %eax,%esi #move i into esi
+  46:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  4b:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  50:	e8 00 00 00 00       	callq  55 <main+0x55> #call printf 
+  55:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax for return call
   5a:	c9                   	leaveq 
-  5b:	c3                   	retq   
+  5b:	c3                   	retq   #return

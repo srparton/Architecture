@@ -5,24 +5,24 @@ memArgPass.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <arguments>:
-   0:	01 fe                	add    %edi,%esi
-   2:	01 f2                	add    %esi,%edx
-   4:	01 d1                	add    %edx,%ecx
-   6:	41 01 c8             	add    %ecx,%r8d
-   9:	45 01 c1             	add    %r8d,%r9d
-   c:	44 89 c8             	mov    %r9d,%eax
-   f:	03 44 24 08          	add    0x8(%rsp),%eax
-  13:	03 44 24 10          	add    0x10(%rsp),%eax
-  17:	03 44 24 18          	add    0x18(%rsp),%eax
-  1b:	03 44 24 20          	add    0x20(%rsp),%eax
-  1f:	03 44 24 28          	add    0x28(%rsp),%eax
-  23:	03 44 24 30          	add    0x30(%rsp),%eax
-  27:	03 44 24 38          	add    0x38(%rsp),%eax
-  2b:	03 44 24 40          	add    0x40(%rsp),%eax
-  2f:	03 44 24 48          	add    0x48(%rsp),%eax
-  33:	03 44 24 50          	add    0x50(%rsp),%eax
-  37:	c3                   	retq   
+   0:	01 fe                	add    %edi,%esi             #a + b
+   2:	01 f2                	add    %esi,%edx             #b + c
+   4:	01 d1                	add    %edx,%ecx             #c + d
+   6:	41 01 c8             	add    %ecx,%r8d             #d + e
+   9:	45 01 c1             	add    %r8d,%r9d             #e + f
+   c:	44 89 c8             	mov    %r9d,%eax             #save value into eax to begin pulling values from memory
+   f:	03 44 24 08          	add    0x8(%rsp),%eax        #f + g
+  13:	03 44 24 10          	add    0x10(%rsp),%eax       #g + h 
+  17:	03 44 24 18          	add    0x18(%rsp),%eax       #h + i
+  1b:	03 44 24 20          	add    0x20(%rsp),%eax       #i + j
+  1f:	03 44 24 28          	add    0x28(%rsp),%eax       #j + k
+  23:	03 44 24 30          	add    0x30(%rsp),%eax       #k + l
+  27:	03 44 24 38          	add    0x38(%rsp),%eax       #l + m
+  2b:	03 44 24 40          	add    0x40(%rsp),%eax       #m + n 
+  2f:	03 44 24 48          	add    0x48(%rsp),%eax       #n + o
+  33:	03 44 24 50          	add    0x50(%rsp),%eax       #o + p
+  37:	c3                   	retq   return value
 
 0000000000000038 <main>:
-  38:	b8 00 00 00 00       	mov    $0x0,%eax
+  38:	b8 00 00 00 00       	mov    $0x0,%eax #return 0
   3d:	c3                   	retq   

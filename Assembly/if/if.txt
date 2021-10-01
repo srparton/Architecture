@@ -6,17 +6,17 @@ Disassembly of section .text:
 
 0000000000000000 <main>:
    0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp)
-   b:	83 7d fc 03          	cmpl   $0x3,-0x4(%rbp)
-   f:	7f 04                	jg     15 <main+0x15>
-  11:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  15:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp)
-  19:	75 04                	jne    1f <main+0x1f>
-  1b:	83 45 fc 06          	addl   $0x6,-0x4(%rbp)
-  1f:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp)
-  23:	7e 07                	jle    2c <main+0x2c>
-  25:	c7 45 fc 64 00 00 00 	movl   $0x64,-0x4(%rbp)
-  2c:	b8 00 00 00 00       	mov    $0x0,%eax
-  31:	5d                   	pop    %rbp
-  32:	c3                   	retq   
+   1:	48 89 e5             	mov    %rsp,%rbp #set base pointer for arguments
+   4:	c7 45 fc 03 00 00 00 	movl   $0x3,-0x4(%rbp) #move 3 into base pointer offset by -0x4 (i = 3)
+   b:	83 7d fc 03          	cmpl   $0x3,-0x4(%rbp) #compare i and 3
+   f:	7f 04                	jg     15 <main+0x15> #if i is greater than 3, jump to line 15 ie: if(i<4)
+  11:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #if i is not greater than 3 then add 1 to i (-0x4(%rbp))
+  15:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp) #compare 4 and i
+  19:	75 04                	jne    1f <main+0x1f> # if 4 isnt equal to i then jump to line 1f
+  1b:	83 45 fc 06          	addl   $0x6,-0x4(%rbp) #if it is equal the add 6 to i
+  1f:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp) # compare 4 and i 
+  23:	7e 07                	jle    2c <main+0x2c> #if i is less than 4 then jump to line 2c (exit)
+  25:	c7 45 fc 64 00 00 00 	movl   $0x64,-0x4(%rbp) #if i is greater than 4 then i = 100;
+  2c:	b8 00 00 00 00       	mov    $0x0,%eax #load 0 into eax and retrun
+  31:	5d                   	pop    %rbp #reset base pointer 
+  32:	c3                   	retq   #return

@@ -6,24 +6,24 @@ Disassembly of section .text:
 
 0000000000000000 <main>:
    0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	48 83 ec 10          	sub    $0x10,%rsp
-   8:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
-   f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  13:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  17:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  1b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  1f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  23:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  27:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  2b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  2f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  33:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  37:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  3a:	89 c6                	mov    %eax,%esi
-  3c:	bf 00 00 00 00       	mov    $0x0,%edi
-  41:	b8 00 00 00 00       	mov    $0x0,%eax
-  46:	e8 00 00 00 00       	callq  4b <main+0x4b>
-  4b:	b8 00 00 00 00       	mov    $0x0,%eax
-  50:	c9                   	leaveq 
-  51:	c3                   	retq   
+   1:	48 89 e5             	mov    %rsp,%rbp #setting base pointer to top of stack pointer
+   4:	48 83 ec 10          	sub    $0x10,%rsp #sub 10 from stack pointer
+   8:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp) #mov 0 into base pointer offset by -0x4 (i)
+   f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 1 
+  13:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 2
+  17:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 3 
+  1b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 4
+  1f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 5
+  23:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 6
+  27:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 7
+  2b:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 8
+  2f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 9
+  33:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #add 1 to i, i = 10
+  37:	8b 45 fc             	mov    -0x4(%rbp),%eax move i into eax
+  3a:	89 c6                	mov    %eax,%esi #move eax (i) into esi
+  3c:	bf 00 00 00 00       	mov    $0x0,%edi #move 0 into edi
+  41:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax
+  46:	e8 00 00 00 00       	callq  4b <main+0x4b> #printf 
+  4b:	b8 00 00 00 00       	mov    $0x0,%eax #move 0 into eax (return)
+  50:	c9                   	leaveq  #resets stack frame
+  51:	c3                   	retq    #return

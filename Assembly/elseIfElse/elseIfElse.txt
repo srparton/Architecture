@@ -5,18 +5,18 @@ elseIfElse.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 0000000000000000 <main>:
-   0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	c7 45 fc 05 00 00 00 	movl   $0x5,-0x4(%rbp)
-   b:	83 7d fc 03          	cmpl   $0x3,-0x4(%rbp)
-   f:	7f 06                	jg     17 <main+0x17>
-  11:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-  15:	eb 13                	jmp    2a <main+0x2a>
-  17:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp)
-  1b:	75 06                	jne    23 <main+0x23>
-  1d:	83 45 fc 06          	addl   $0x6,-0x4(%rbp)
-  21:	eb 07                	jmp    2a <main+0x2a>
-  23:	c7 45 fc 64 00 00 00 	movl   $0x64,-0x4(%rbp)
-  2a:	b8 00 00 00 00       	mov    $0x0,%eax
-  2f:	5d                   	pop    %rbp
-  30:	c3                   	retq   
+   0:	55                   	push   %rbp #save base pointer position before function
+   1:	48 89 e5             	mov    %rsp,%rbp # reset base pointer to stack pointer
+   4:	c7 45 fc 05 00 00 00 	movl   $0x5,-0x4(%rbp) #move 5 into base pointer offset by -4
+   b:	83 7d fc 03          	cmpl   $0x3,-0x4(%rbp) #if(i < 4) or compare 0x3 and 5
+   f:	7f 06                	jg     17 <main+0x17> #jump if greater than to else if at line 17
+  11:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) #if less than then add 1 to i(5) [i++]
+  15:	eb 13                	jmp    2a <main+0x2a> #jump to 2a unconditionally
+  17:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp) #compare 4 and i 
+  1b:	75 06                	jne    23 <main+0x23>  #if not equal then jump to line 23(else statement)
+  1d:	83 45 fc 06          	addl   $0x6,-0x4(%rbp) #otherwise add 6 to i (residing in base pointer offset by -0x4)
+  21:	eb 07                	jmp    2a <main+0x2a> #jump unconditionally to 2a (end of method) 
+  23:	c7 45 fc 64 00 00 00 	movl   $0x64,-0x4(%rbp) #if above is false move 0x64 into i. (i = 100)
+  2a:	b8 00 00 00 00       	mov    $0x0,%eax #return, move 0 into eax for return
+  2f:	5d                   	pop    %rbp #reset base pointer
+  30:	c3                   	retq    #return 

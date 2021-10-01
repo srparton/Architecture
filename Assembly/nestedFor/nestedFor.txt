@@ -1,0 +1,59 @@
+
+nestedFor.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	48 83 ec 38          	sub    $0x38,%rsp
+   4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+   b:	00 00 
+   d:	48 89 44 24 28       	mov    %rax,0x28(%rsp)
+  12:	31 c0                	xor    %eax,%eax
+  14:	c7 04 24 0b 00 00 00 	movl   $0xb,(%rsp)
+  1b:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%rsp)
+  22:	00 
+  23:	c7 44 24 08 04 00 00 	movl   $0x4,0x8(%rsp)
+  2a:	00 
+  2b:	c7 44 24 0c 64 00 00 	movl   $0x64,0xc(%rsp)
+  32:	00 
+  33:	c7 44 24 10 05 00 00 	movl   $0x5,0x10(%rsp)
+  3a:	00 
+  3b:	c7 44 24 14 06 00 00 	movl   $0x6,0x14(%rsp)
+  42:	00 
+  43:	c7 44 24 18 63 00 00 	movl   $0x63,0x18(%rsp)
+  4a:	00 
+  4b:	c7 44 24 1c 4d 00 00 	movl   $0x4d,0x1c(%rsp)
+  52:	00 
+  53:	c7 44 24 20 2a 00 00 	movl   $0x2a,0x20(%rsp)
+  5a:	00 
+  5b:	c7 44 24 24 01 00 00 	movl   $0x1,0x24(%rsp)
+  62:	00 
+  63:	be 00 00 00 00       	mov    $0x0,%esi
+  68:	eb 2e                	jmp    98 <main+0x98>
+  6a:	48 63 d0             	movslq %eax,%rdx
+  6d:	8b 0c 94             	mov    (%rsp,%rdx,4),%ecx
+  70:	48 63 d6             	movslq %esi,%rdx
+  73:	8b 14 94             	mov    (%rsp,%rdx,4),%edx
+  76:	39 d1                	cmp    %edx,%ecx
+  78:	7d 0c                	jge    86 <main+0x86>
+  7a:	48 63 fe             	movslq %esi,%rdi
+  7d:	89 0c bc             	mov    %ecx,(%rsp,%rdi,4)
+  80:	48 63 c8             	movslq %eax,%rcx
+  83:	89 14 8c             	mov    %edx,(%rsp,%rcx,4)
+  86:	83 c0 01             	add    $0x1,%eax
+  89:	eb 05                	jmp    90 <main+0x90>
+  8b:	b8 00 00 00 00       	mov    $0x0,%eax
+  90:	83 f8 09             	cmp    $0x9,%eax
+  93:	7e d5                	jle    6a <main+0x6a>
+  95:	83 c6 01             	add    $0x1,%esi
+  98:	83 fe 09             	cmp    $0x9,%esi
+  9b:	7e ee                	jle    8b <main+0x8b>
+  9d:	b8 00 00 00 00       	mov    $0x0,%eax
+  a2:	48 8b 7c 24 28       	mov    0x28(%rsp),%rdi
+  a7:	64 48 33 3c 25 28 00 	xor    %fs:0x28,%rdi
+  ae:	00 00 
+  b0:	74 05                	je     b7 <main+0xb7>
+  b2:	e8 00 00 00 00       	callq  b7 <main+0xb7>
+  b7:	48 83 c4 38          	add    $0x38,%rsp
+  bb:	c3                   	retq   

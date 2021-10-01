@@ -1,6 +1,22 @@
 
-./Constructs/elseIfElse.o:	file format mach-o arm64
+elseIfElse.o:     file format elf64-x86-64
 
 
-elseIfElse.o:	file format mach-o arm64
+Disassembly of section .text:
 
+0000000000000000 <main>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	c7 45 fc 05 00 00 00 	movl   $0x5,-0x4(%rbp)
+   b:	83 7d fc 03          	cmpl   $0x3,-0x4(%rbp)
+   f:	7f 06                	jg     17 <main+0x17>
+  11:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+  15:	eb 13                	jmp    2a <main+0x2a>
+  17:	83 7d fc 04          	cmpl   $0x4,-0x4(%rbp)
+  1b:	75 06                	jne    23 <main+0x23>
+  1d:	83 45 fc 06          	addl   $0x6,-0x4(%rbp)
+  21:	eb 07                	jmp    2a <main+0x2a>
+  23:	c7 45 fc 64 00 00 00 	movl   $0x64,-0x4(%rbp)
+  2a:	b8 00 00 00 00       	mov    $0x0,%eax
+  2f:	5d                   	pop    %rbp
+  30:	c3                   	retq   

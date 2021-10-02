@@ -1,0 +1,301 @@
+
+Assignment1.o:	file format mach-o arm64
+
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <ltmp0>:
+       0: 1f 00 01 6b  	cmp	w0, w1
+       4: 8c 00 00 54  	b.gt	0x14 <ltmp0+0x14>
+       8: 1f 00 02 6b  	cmp	w0, w2
+       c: 4c 00 00 54  	b.gt	0x14 <ltmp0+0x14>
+      10: c0 03 5f d6  	ret
+      14: 3f 00 02 6b  	cmp	w1, w2
+      18: 20 d0 40 7a  	ccmp	w1, w0, #0, le
+      1c: 40 c0 81 1a  	csel	w0, w2, w1, gt
+      20: c0 03 5f d6  	ret
+
+0000000000000024 <_Levensthain>:
+      24: fa 67 bb a9  	stp	x26, x25, [sp, #-80]!
+      28: f8 5f 01 a9  	stp	x24, x23, [sp, #16]
+      2c: f6 57 02 a9  	stp	x22, x21, [sp, #32]
+      30: f4 4f 03 a9  	stp	x20, x19, [sp, #48]
+      34: fd 7b 04 a9  	stp	x29, x30, [sp, #64]
+      38: fd 03 01 91  	add	x29, sp, #64
+      3c: ff 43 00 d1  	sub	sp, sp, #16
+      40: f6 03 01 aa  	mov	x22, x1
+      44: f7 03 00 aa  	mov	x23, x0
+      48: 08 00 00 90  	adrp	x8, 0x0 <_Levensthain+0x24>
+      4c: 08 01 40 f9  	ldr	x8, [x8]
+      50: 08 01 40 f9  	ldr	x8, [x8]
+      54: a8 83 1b f8  	stur	x8, [x29, #-72]
+      58: 00 00 00 94  	bl	0x58 <_Levensthain+0x34>
+      5c: f5 03 00 aa  	mov	x21, x0
+      60: e0 03 16 aa  	mov	x0, x22
+      64: 00 00 00 94  	bl	0x64 <_Levensthain+0x40>
+      68: 18 7c 40 93  	sxtw	x24, w0
+      6c: f9 03 00 aa  	mov	x25, x0
+      70: e0 03 18 aa  	mov	x0, x24
+      74: 00 00 00 94  	bl	0x74 <_Levensthain+0x50>
+      78: f4 03 00 aa  	mov	x20, x0
+      7c: a0 7e 40 93  	sxtw	x0, w21
+      80: 00 00 00 94  	bl	0x80 <_Levensthain+0x5c>
+      84: f3 03 00 aa  	mov	x19, x0
+      88: ba 02 19 6b  	subs	w26, w21, w25
+      8c: 8d 02 00 54  	b.le	0xdc <_Levensthain+0xb8>
+      90: 41 7f 40 93  	sxtw	x1, w26
+      94: e0 03 14 aa  	mov	x0, x20
+      98: 00 00 00 94  	bl	0x98 <_Levensthain+0x74>
+      9c: f4 03 00 aa  	mov	x20, x0
+      a0: e1 03 16 aa  	mov	x1, x22
+      a4: 00 00 00 94  	bl	0xa4 <_Levensthain+0x80>
+      a8: 1a 01 f8 37  	tbnz	w26, #31, 0xc8 <_Levensthain+0xa4>
+      ac: 56 07 00 11  	add	w22, w26, #1
+      b0: d8 0f 80 52  	mov	w24, #126
+      b4: e0 03 14 aa  	mov	x0, x20
+      b8: 00 00 00 94  	bl	0xb8 <_Levensthain+0x94>
+      bc: 98 6a 20 78  	strh	w24, [x20, x0]
+      c0: d6 06 00 71  	subs	w22, w22, #1
+      c4: 81 ff ff 54  	b.ne	0xb4 <_Levensthain+0x90>
+      c8: e0 03 13 aa  	mov	x0, x19
+      cc: e1 03 17 aa  	mov	x1, x23
+      d0: 00 00 00 94  	bl	0xd0 <_Levensthain+0xac>
+      d4: f9 03 15 aa  	mov	x25, x21
+      d8: 20 00 00 14  	b	0x158 <_Levensthain+0x134>
+      dc: 3a 03 15 6b  	subs	w26, w25, w21
+      e0: 8d 02 00 54  	b.le	0x130 <_Levensthain+0x10c>
+      e4: 41 7f 40 93  	sxtw	x1, w26
+      e8: e0 03 13 aa  	mov	x0, x19
+      ec: 00 00 00 94  	bl	0xec <_Levensthain+0xc8>
+      f0: f3 03 00 aa  	mov	x19, x0
+      f4: e1 03 17 aa  	mov	x1, x23
+      f8: 00 00 00 94  	bl	0xf8 <_Levensthain+0xd4>
+      fc: 1a 01 f8 37  	tbnz	w26, #31, 0x11c <_Levensthain+0xf8>
+     100: 55 07 00 11  	add	w21, w26, #1
+     104: d7 0f 80 52  	mov	w23, #126
+     108: e0 03 13 aa  	mov	x0, x19
+     10c: 00 00 00 94  	bl	0x10c <_Levensthain+0xe8>
+     110: 77 6a 20 78  	strh	w23, [x19, x0]
+     114: b5 06 00 71  	subs	w21, w21, #1
+     118: 81 ff ff 54  	b.ne	0x108 <_Levensthain+0xe4>
+     11c: e0 03 14 aa  	mov	x0, x20
+     120: e1 03 16 aa  	mov	x1, x22
+     124: 00 00 00 94  	bl	0x124 <_Levensthain+0x100>
+     128: f5 03 19 aa  	mov	x21, x25
+     12c: 0b 00 00 14  	b	0x158 <_Levensthain+0x134>
+     130: e0 03 14 aa  	mov	x0, x20
+     134: e1 03 18 aa  	mov	x1, x24
+     138: 00 00 00 94  	bl	0x138 <_Levensthain+0x114>
+     13c: f4 03 00 aa  	mov	x20, x0
+     140: e0 03 13 aa  	mov	x0, x19
+     144: e1 03 17 aa  	mov	x1, x23
+     148: 00 00 00 94  	bl	0x148 <_Levensthain+0x124>
+     14c: e0 03 14 aa  	mov	x0, x20
+     150: e1 03 16 aa  	mov	x1, x22
+     154: 00 00 00 94  	bl	0x154 <_Levensthain+0x130>
+     158: 28 07 00 11  	add	w8, w25, #1
+     15c: b6 06 00 11  	add	w22, w21, #1
+     160: c9 7e a8 9b  	umull	x9, w22, w8
+     164: 29 f5 7e d3  	lsl	x9, x9, #2
+     168: 2a 3d 00 91  	add	x10, x9, #15
+     16c: 4c ed 7c 92  	and	x12, x10, #0xfffffffffffffff0
+     170: 10 00 00 90  	adrp	x16, 0x0 <_Levensthain+0x14c>
+     174: 10 02 40 f9  	ldr	x16, [x16]
+     178: 00 02 3f d6  	blr	x16
+     17c: e9 03 00 91  	mov	x9, sp
+     180: 37 01 0c cb  	sub	x23, x9, x12
+     184: ff 02 00 91  	mov	sp, x23
+     188: ff 02 00 b9  	str	wzr, [x23]
+     18c: c9 f6 7e d3  	lsl	x9, x22, #2
+     190: 3f 07 00 71  	cmp	w25, #1
+     194: 2b 01 00 54  	b.lt	0x1b8 <_Levensthain+0x194>
+     198: 0a 05 00 d1  	sub	x10, x8, #1
+     19c: eb 03 17 aa  	mov	x11, x23
+     1a0: 6c 01 40 b9  	ldr	w12, [x11]
+     1a4: 8c 05 00 11  	add	w12, w12, #1
+     1a8: 6b 01 09 8b  	add	x11, x11, x9
+     1ac: 6c 01 00 b9  	str	w12, [x11]
+     1b0: 4a 05 00 f1  	subs	x10, x10, #1
+     1b4: 61 ff ff 54  	b.ne	0x1a0 <_Levensthain+0x17c>
+     1b8: bf 06 00 71  	cmp	w21, #1
+     1bc: 0b 05 00 54  	b.lt	0x25c <_Levensthain+0x238>
+     1c0: ee 02 40 b9  	ldr	w14, [x23]
+     1c4: cc 06 00 d1  	sub	x12, x22, #1
+     1c8: 9f 41 00 f1  	cmp	x12, #16
+     1cc: 82 00 00 54  	b.hs	0x1dc <_Levensthain+0x1b8>
+     1d0: 2a 00 80 52  	mov	w10, #1
+     1d4: eb 03 0e aa  	mov	x11, x14
+     1d8: 1a 00 00 14  	b	0x240 <_Levensthain+0x21c>
+     1dc: 8d ed 7c 92  	and	x13, x12, #0xfffffffffffffff0
+     1e0: cb 01 0d 0b  	add	w11, w14, w13
+     1e4: aa 01 40 b2  	orr	x10, x13, #0x1
+     1e8: c0 0d 04 4e  	dup.4s	v0, w14
+     1ec: 0e 00 00 90  	adrp	x14, 0x0 <_Levensthain+0x1c8>
+     1f0: c1 01 c0 3d  	ldr	q1, [x14]
+     1f4: 00 84 a1 4e  	add.4s	v0, v0, v1
+     1f8: ee 92 00 91  	add	x14, x23, #36
+     1fc: 21 04 00 4f  	movi.4s	v1, #1
+     200: a2 04 00 4f  	movi.4s	v2, #5
+     204: 23 05 00 4f  	movi.4s	v3, #9
+     208: a4 05 00 4f  	movi.4s	v4, #13
+     20c: 05 06 00 4f  	movi.4s	v5, #16
+     210: ef 03 0d aa  	mov	x15, x13
+     214: 06 84 a1 4e  	add.4s	v6, v0, v1
+     218: 07 84 a2 4e  	add.4s	v7, v0, v2
+     21c: 10 84 a3 4e  	add.4s	v16, v0, v3
+     220: 11 84 a4 4e  	add.4s	v17, v0, v4
+     224: c6 1d 3f ad  	stp	q6, q7, [x14, #-32]
+     228: d0 45 82 ac  	stp	q16, q17, [x14], #64
+     22c: 00 84 a5 4e  	add.4s	v0, v0, v5
+     230: ef 41 00 f1  	subs	x15, x15, #16
+     234: 01 ff ff 54  	b.ne	0x214 <_Levensthain+0x1f0>
+     238: 9f 01 0d eb  	cmp	x12, x13
+     23c: 00 01 00 54  	b.eq	0x25c <_Levensthain+0x238>
+     240: 6b 05 00 11  	add	w11, w11, #1
+     244: ec 0a 0a 8b  	add	x12, x23, x10, lsl #2
+     248: ca 02 0a cb  	sub	x10, x22, x10
+     24c: 8b 45 00 b8  	str	w11, [x12], #4
+     250: 6b 05 00 11  	add	w11, w11, #1
+     254: 4a 05 00 f1  	subs	x10, x10, #1
+     258: a1 ff ff 54  	b.ne	0x24c <_Levensthain+0x228>
+     25c: 3f 07 00 71  	cmp	w25, #1
+     260: ab 03 00 54  	b.lt	0x2d4 <_Levensthain+0x2b0>
+     264: ea 12 00 91  	add	x10, x23, #4
+     268: 0b 05 00 d1  	sub	x11, x8, #1
+     26c: 2c 00 80 52  	mov	w12, #1
+     270: 8d 01 14 8b  	add	x13, x12, x20
+     274: 8e 7d 16 9b  	mul	x14, x12, x22
+     278: ad f1 5f 38  	ldurb	w13, [x13, #-1]
+     27c: ee 7a 6e b8  	ldr	w14, [x23, x14, lsl #2]
+     280: ef 03 13 aa  	mov	x15, x19
+     284: f0 03 0b aa  	mov	x16, x11
+     288: f1 03 0a aa  	mov	x17, x10
+     28c: 21 82 7f 29  	ldp	w1, w0, [x17, #-4]
+     290: e2 15 40 38  	ldrb	w2, [x15], #1
+     294: 5f 00 0d 6b  	cmp	w2, w13
+     298: 21 04 81 1a  	cinc	w1, w1, ne
+     29c: df 01 01 6b  	cmp	w14, w1
+     2a0: c0 b1 40 7a  	ccmp	w14, w0, #0, lt
+     2a4: 22 c4 8e 1a  	csinc	w2, w1, w14, gt
+     2a8: 1f 00 01 6b  	cmp	w0, w1
+     2ac: 00 b0 4e 7a  	ccmp	w0, w14, #0, lt
+     2b0: 4e c4 80 1a  	csinc	w14, w2, w0, gt
+     2b4: 2e 6a 29 b8  	str	w14, [x17, x9]
+     2b8: 31 12 00 91  	add	x17, x17, #4
+     2bc: 10 06 00 f1  	subs	x16, x16, #1
+     2c0: 61 fe ff 54  	b.ne	0x28c <_Levensthain+0x268>
+     2c4: 8c 05 00 91  	add	x12, x12, #1
+     2c8: 4a 01 09 8b  	add	x10, x10, x9
+     2cc: 9f 01 08 eb  	cmp	x12, x8
+     2d0: 01 fd ff 54  	b.ne	0x270 <_Levensthain+0x24c>
+     2d4: e0 03 14 aa  	mov	x0, x20
+     2d8: 00 00 00 94  	bl	0x2d8 <_Levensthain+0x2b4>
+     2dc: e0 03 13 aa  	mov	x0, x19
+     2e0: 00 00 00 94  	bl	0x2e0 <_Levensthain+0x2bc>
+     2e4: 28 7f 40 93  	sxtw	x8, w25
+     2e8: c8 7e 08 9b  	mul	x8, x22, x8
+     2ec: e8 0a 08 8b  	add	x8, x23, x8, lsl #2
+     2f0: 00 d9 75 b8  	ldr	w0, [x8, w21, sxtw #2]
+     2f4: a8 83 5b f8  	ldur	x8, [x29, #-72]
+     2f8: 09 00 00 90  	adrp	x9, 0x0 <_Levensthain+0x2d4>
+     2fc: 29 01 40 f9  	ldr	x9, [x9]
+     300: 29 01 40 f9  	ldr	x9, [x9]
+     304: 3f 01 08 eb  	cmp	x9, x8
+     308: 01 01 00 54  	b.ne	0x328 <_Levensthain+0x304>
+     30c: bf 03 01 d1  	sub	sp, x29, #64
+     310: fd 7b 44 a9  	ldp	x29, x30, [sp, #64]
+     314: f4 4f 43 a9  	ldp	x20, x19, [sp, #48]
+     318: f6 57 42 a9  	ldp	x22, x21, [sp, #32]
+     31c: f8 5f 41 a9  	ldp	x24, x23, [sp, #16]
+     320: fa 67 c5 a8  	ldp	x26, x25, [sp], #80
+     324: c0 03 5f d6  	ret
+     328: 00 00 00 94  	bl	0x328 <_Levensthain+0x304>
+
+000000000000032c <_main>:
+     32c: fc 6f bc a9  	stp	x28, x27, [sp, #-64]!
+     330: f6 57 01 a9  	stp	x22, x21, [sp, #16]
+     334: f4 4f 02 a9  	stp	x20, x19, [sp, #32]
+     338: fd 7b 03 a9  	stp	x29, x30, [sp, #48]
+     33c: fd c3 00 91  	add	x29, sp, #48
+     340: ff c3 13 d1  	sub	sp, sp, #1264
+     344: 16 00 80 d2  	mov	x22, #0
+     348: 08 00 00 90  	adrp	x8, 0x0 <_main+0x1c>
+     34c: 08 01 40 f9  	ldr	x8, [x8]
+     350: 08 01 40 f9  	ldr	x8, [x8]
+     354: a8 83 1c f8  	stur	x8, [x29, #-56]
+     358: e8 03 0a 91  	add	x8, sp, #640
+     35c: 13 75 00 91  	add	x19, x8, #29
+     360: 14 00 00 90  	adrp	x20, 0x0 <_main+0x34>
+     364: 94 02 00 91  	add	x20, x20, #0
+     368: 15 00 00 90  	adrp	x21, 0x0 <_main+0x3c>
+     36c: 80 6a 76 f8  	ldr	x0, [x20, x22]
+     370: a1 02 40 f9  	ldr	x1, [x21]
+     374: 00 00 00 94  	bl	0x374 <_main+0x48>
+     378: 60 32 1e b8  	stur	w0, [x19, #-29]
+     37c: 81 6a 76 f8  	ldr	x1, [x20, x22]
+     380: 60 66 00 d1  	sub	x0, x19, #25
+     384: 22 03 80 52  	mov	w2, #25
+     388: 00 00 00 94  	bl	0x388 <_main+0x5c>
+     38c: a1 02 40 f9  	ldr	x1, [x21]
+     390: e0 03 13 aa  	mov	x0, x19
+     394: 00 00 00 94  	bl	0x394 <_main+0x68>
+     398: d6 22 00 91  	add	x22, x22, #8
+     39c: 73 e2 00 91  	add	x19, x19, #56
+     3a0: df 62 01 f1  	cmp	x22, #88
+     3a4: 41 fe ff 54  	b.ne	0x36c <_main+0x40>
+     3a8: 16 00 80 d2  	mov	x22, #0
+     3ac: e8 63 00 91  	add	x8, sp, #24
+     3b0: 13 75 00 91  	add	x19, x8, #29
+     3b4: a0 02 40 f9  	ldr	x0, [x21]
+     3b8: 81 6a 76 f8  	ldr	x1, [x20, x22]
+     3bc: 00 00 00 94  	bl	0x3bc <_main+0x90>
+     3c0: 60 32 1e b8  	stur	w0, [x19, #-29]
+     3c4: 81 6a 76 f8  	ldr	x1, [x20, x22]
+     3c8: e0 03 13 aa  	mov	x0, x19
+     3cc: 00 00 00 94  	bl	0x3cc <_main+0xa0>
+     3d0: a1 02 40 f9  	ldr	x1, [x21]
+     3d4: 60 66 00 d1  	sub	x0, x19, #25
+     3d8: 22 03 80 52  	mov	w2, #25
+     3dc: 00 00 00 94  	bl	0x3dc <_main+0xb0>
+     3e0: d6 22 00 91  	add	x22, x22, #8
+     3e4: 73 e2 00 91  	add	x19, x19, #56
+     3e8: df 62 01 f1  	cmp	x22, #88
+     3ec: 41 fe ff 54  	b.ne	0x3b4 <_main+0x88>
+     3f0: 14 00 80 d2  	mov	x20, #0
+     3f4: f5 03 0a 91  	add	x21, sp, #640
+     3f8: f6 63 00 91  	add	x22, sp, #24
+     3fc: 13 00 00 90  	adrp	x19, 0x0 <_main+0xd0>
+     400: 73 02 00 91  	add	x19, x19, #0
+     404: a8 02 14 8b  	add	x8, x21, x20
+     408: 09 11 00 91  	add	x9, x8, #4
+     40c: 0a d5 41 b8  	ldr	w10, [x8], #29
+     410: e8 ab 00 a9  	stp	x8, x10, [sp, #8]
+     414: e9 03 00 f9  	str	x9, [sp]
+     418: e0 03 13 aa  	mov	x0, x19
+     41c: 00 00 00 94  	bl	0x41c <_main+0xf0>
+     420: c8 02 14 8b  	add	x8, x22, x20
+     424: 09 11 00 91  	add	x9, x8, #4
+     428: 0a d5 41 b8  	ldr	w10, [x8], #29
+     42c: e8 ab 00 a9  	stp	x8, x10, [sp, #8]
+     430: e9 03 00 f9  	str	x9, [sp]
+     434: e0 03 13 aa  	mov	x0, x19
+     438: 00 00 00 94  	bl	0x438 <_main+0x10c>
+     43c: 40 01 80 52  	mov	w0, #10
+     440: 00 00 00 94  	bl	0x440 <_main+0x114>
+     444: 94 e2 00 91  	add	x20, x20, #56
+     448: 9f a2 09 f1  	cmp	x20, #616
+     44c: c1 fd ff 54  	b.ne	0x404 <_main+0xd8>
+     450: a8 83 5c f8  	ldur	x8, [x29, #-56]
+     454: 09 00 00 90  	adrp	x9, 0x0 <_main+0x128>
+     458: 29 01 40 f9  	ldr	x9, [x9]
+     45c: 29 01 40 f9  	ldr	x9, [x9]
+     460: 3f 01 08 eb  	cmp	x9, x8
+     464: 01 01 00 54  	b.ne	0x484 <_main+0x158>
+     468: 00 00 80 52  	mov	w0, #0
+     46c: ff c3 13 91  	add	sp, sp, #1264
+     470: fd 7b 43 a9  	ldp	x29, x30, [sp, #48]
+     474: f4 4f 42 a9  	ldp	x20, x19, [sp, #32]
+     478: f6 57 41 a9  	ldp	x22, x21, [sp, #16]
+     47c: fc 6f c4 a8  	ldp	x28, x27, [sp], #64
+     480: c0 03 5f d6  	ret
+     484: 00 00 00 94  	bl	0x484 <_main+0x158>

@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+/*////////////////////////////////////////////
+Implemetation of Levenshtein distance using matrices
+and iteration,
+
+Due Oct 2nd, 2021
+
+Programmers Braxton Elrod and Spencer Parton
+///////////////////////////////////////////*/
+
 
 char *correctWord[11] = {"l","le","lev","leve","leven","levens","levensh","levensht","levenshte","levenshtei","levenshtein"};
 char *wrongWord[1] = {"levenshtein"};
@@ -20,7 +29,15 @@ int minimum(int a, int b, int c){
     return c;
 }
 
+/*/////////////////////////////////////////////////
+Calculates the distance between 2 strings. For example
+good->bad returns 3
 
+paramaters:two strings
+
+output: returns the difference between the two strings
+if they are the same it will return 0
+/*///////////////////////////////////////////////
 int Levensthain(char *s1,char *s2){
   int s1len, s2len, i, x, y, z = 0;
   s1len = strlen(s1);
@@ -74,6 +91,7 @@ int Levensthain(char *s1,char *s2){
       matrix[x][y] = minimum(matrix[x-1][y] + 1, matrix[x][y-1] + 1, matrix[x-1][y-1] + (matrixRows[y-1] == s3[x-1] ? 0 : 1));
     }
   }
+  //print out matrix
   //printMatrix(s1len + 1, s2len + 1, matrix);
   /*for(int row = 0; row < s1len; row++){
     for (int col=0; col < s2len; col++){

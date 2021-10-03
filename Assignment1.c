@@ -2,15 +2,27 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*
+  Purpose: "string" of words to test against each other. 
+*/
 char *correctWord[11] = {"l","le","lev","leve","leven","levens","levensh","levensht","levenshte","levenshtei","levenshtein"};
 char *wrongWord[1] = {"levenshtein"};
 
+/*
+  Purpose: construct containing 2 string arrays for correct words and wrong words
+*/
 struct result{
   int levenResult;
   char correct[25];
   char wrong[25];
 };
 
+/*
+  Purpose: Will determine which value (a b or c) is the smallest and will return that value.
+  Input: 3 variable of type Integer must be passed in
+  Precondition: Values cant be null
+  Postcondition: Returns smallest of 3 values as type int
+*/
 int minimum(int a, int b, int c){
   if(a <= b && a <= c)
     return a;
@@ -20,7 +32,12 @@ int minimum(int a, int b, int c){
     return c;
 }
 
-
+/*
+  Purpose: Will calculate the diffrence between two diffrent words. Ex: this and thos has a levensthain distance of 1
+  Input: 2 character arrays 
+  Precondition: 2 character arrays of length non-null
+  Postcondition: Will return the distance or diffrence 
+*/
 int Levensthain(char *s1,char *s2){
   int s1len, s2len, i, x, y, z = 0;
   s1len = strlen(s1);
